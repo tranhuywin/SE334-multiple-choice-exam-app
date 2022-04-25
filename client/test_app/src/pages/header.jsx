@@ -74,7 +74,7 @@ class Header extends Component {
                     )
                   })}
                 </ul>
-                <Button>Sign up</Button>
+                {/* <Button>Sign up</Button> */}
               </nav>
             <hr />
             </div>
