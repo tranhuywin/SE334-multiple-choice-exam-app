@@ -17,14 +17,14 @@ function Category({
 
             <div className="container-children">
                 <div className="text">
-                    <h3>{title}</h3>
+                    <a className="title" href="/">{title}</a>
                     <p>{description}</p>
                 </div>
 
                 <div className="container-footer">
                     <div className="num-exam">100 đề thi</div>
-                    <button className="btn-category">
-                    <a href="/">Xem chi tiết</a>
+                        <button className="btn-category">
+                            <a href="/">Xem chi tiết</a>
                     </button>
                 </div>
             </div>
