@@ -91,9 +91,9 @@ function Exam () {
                 return (
                     <div className="container">
                         <Category
-                            image={`${subject.image}`}
-                            title={`${subject.title}`}
-                            description={`${subject.description}`}
+                            image={subject.image}
+                            title={subject.title}
+                            description={subject.description}
                         />
                     </div>
                 )
