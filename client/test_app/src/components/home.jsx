@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import "./home.css"
+
+import Intro from "./home/intro";
+import MainContent from "./home/maincontent";
+import Documents from "./home/documents";
 
 class Home extends Component {
     render() {
         return(
-            <h2>this is home page</h2>
+            <React.Fragment>
+                <Intro/>
+                <MainContent/>
+                <Documents/>
+            </React.Fragment>
         );
     }
 }
