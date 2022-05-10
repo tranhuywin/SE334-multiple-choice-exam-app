@@ -51,23 +51,25 @@ function Intro() {
   }
 
   return (
-    <div className="container-slider">
-      {ListSlider.map((item, index) => {
-        return(
-          <div key={index} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
-            <img src={item.imageSrc} alt="#" className="slider-img"></img>
-            <div className="slider-divtext">
-              <p className="slider-text">{item.text}</p>
+    <div className="intro-part">
+      <div className="container-slider">
+        {ListSlider.map((item, index) => {
+          return(
+            <div key={index} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
+              <img src={item.imageSrc} alt="#" className="slider-img"></img>
+              <div className="slider-divtext">
+                <p className="slider-text">{item.text}</p>
+              </div>
             </div>
-          </div>
-        )
-      })}
-      <ButtonSlider OnClick={nextSlide} direction="next"></ButtonSlider>
-      <ButtonSlider OnClick={preSlide} direction="back"></ButtonSlider>
-      <div className="container-dots">
-        {Array.from({length: ListSlider.length}).map((item, index) => (
-          <div className={slideIndex === index + 1 ? "dot active" : "dot"} onClick={() => moveDot(index + 1)}></div>
-        ))}
+          )
+        })}
+        <ButtonSlider OnClick={nextSlide} direction="next"></ButtonSlider>
+        <ButtonSlider OnClick={preSlide} direction="back"></ButtonSlider>
+        <div className="container-dots">
+          {Array.from({length: ListSlider.length}).map((item, index) => (
+            <div className={slideIndex === index + 1 ? "dot active" : "dot"} onClick={() => moveDot(index + 1)}></div>
+          ))}
+        </div>
       </div>
     </div>
   );

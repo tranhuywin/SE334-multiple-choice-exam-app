@@ -80,17 +80,25 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    position: relative;
 }
 .accounts-container i {
-    font-size: 40px;
+    /* font-size: 40px; */
 }
 .accounts-container input {
     border: none;
     border-bottom: 1px solid;
     outline: none;
+    display: flex;
+    align-items: flex-end;
+}
+.i-account-container {
+    position: absolute;
+    right: 10px;
+    /* font-size: 20px; */
 }
 
 .forgot-account {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
