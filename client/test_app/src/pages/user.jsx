@@ -7,7 +7,7 @@ import Header from "./header";
 import Footer from "./footer";
 
 const Home = React.lazy(() => import("../components/home.jsx"));
-const Exam = React.lazy(() => import("../components/exam.jsx"));
+const Exam = React.lazy(() => import("../components/exam/exam.jsx"));
 const ManualDocument = React.lazy(() => import("../components/manual-document.jsx"));
 
 class User extends Component {
