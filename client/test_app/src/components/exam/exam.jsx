@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import  { BrowserRouter as Router } from "react-router-dom";
+import SubjectsList from "./subjects-list"
 import "./exam.css"
 
 const subjectsList = [
@@ -53,6 +55,8 @@ const subjectsList = [
     }
 ]
 
+
+
 function Category({
     image, 
     title, 
@@ -73,8 +77,8 @@ function Category({
 
                 <div className="container-footer">
                     <div className="num-exam">100 đề thi</div>
-                        <button className="btn-category">
-                            <a href="/">Xem chi tiết</a>
+                    <button className="btn-category">
+                        <a href="/exam/subjects-list">Xem chi tiết</a>
                     </button>
                 </div>
             </div>
