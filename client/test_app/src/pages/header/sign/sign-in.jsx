@@ -1,7 +1,9 @@
 import React from "react";
 import "./sign-in.css"
+import { useState } from "react";
 
 function SignIn({closeSignInModal}) {
+    const [showPass, setShowPass] = useState(false);
     return(
         <div className="modal-background">
             <div className="container-modal">
@@ -18,7 +20,8 @@ function SignIn({closeSignInModal}) {
                     </div>
                     <div className="accounts-container">
                         <i class="fas fa-lock"></i>
-                        <input placeholder="Password"/>
+                        <input placeholder="Password" type={showPass ? "text" : "password"}/>
+                        {showPass ? <i className="fas fa-eye i-account-container" onClick={() => setShowPass(!showPass)}></i> : <i className="fas fa-eye-slash i-account-container" onClick={() => setShowPass(!showPass)}></i>}
                     </div>
                 </div>
                 <div className="forgot-account">

@@ -1,8 +1,7 @@
 const HomePage = "/";
 const ExamPage = "/exam";
 const ManualDocumentPage = "/manual-document";
-const ContactsPage = "#";
-const HelpPage = "#";
+const CreatePage = "/create";
 
 export const navItems = [
     {
@@ -62,90 +61,17 @@ export const navItems = [
     },
     {
       id: 2,
-      title: 'Tạo đề thi',
+      title: 'Tài liệu',
       url: ManualDocumentPage,
       cName: 'nav-links',
       submenu: [
         {
-            title: 'Tạo đề Toán học',
+            title: 'Khối xã hội',
             url: "#",
             cName: 'subitem-link'
         },
         {
-            title: 'Tạo đề Vật lý',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Tạo đề Hóa học',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Tạo đề Ngữ văn',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Tạo đề Địa lý',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Tạo đề Lịch sử',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Tạo đề GDCD',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Tạo đề Tiếng Anh',
-            url: "#",
-            cName: 'subitem-link'
-        },
-      ]
-    },
-    {
-      id: 3,
-      title: 'Tài liệu',
-      url: ContactsPage,
-      cName: 'nav-links',
-      submenu: [
-        {
-            title: 'Toán học',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Vật lý',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Hóa học',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Ngữ văn',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Địa lý',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'Lịch sử',
-            url: "#",
-            cName: 'subitem-link'
-        },
-        {
-            title: 'GDCD',
+            title: 'Khối tự nhiên',
             url: "#",
             cName: 'subitem-link'
         },
@@ -154,12 +80,17 @@ export const navItems = [
             url: "#",
             cName: 'subitem-link'
         },
+        {
+            title: 'Danh sách đề văn',
+            url: "#",
+            cName: 'subitem-link'
+        },
       ]
     },
     {
-      id: 4,
-      title: 'Hướng dẫn',
-      url: HelpPage,
+      id: 3,
+      title: 'Giáo viên',
+      url: CreatePage,
       cName: 'nav-links',
       submenu: [
         {
@@ -168,13 +99,13 @@ export const navItems = [
             cName: 'subitem-link'
         },
         {
-            title: 'Tạo bài thi',
+            title: 'Tra cứu kết quả',
             url: "#",
             cName: 'subitem-link'
         },
         {
-            title: 'Tra cứu kết quả',
-            url: "#",
+            title: 'Tạo bài thi',
+            url: CreatePage,
             cName: 'subitem-link'
         },
       ]
