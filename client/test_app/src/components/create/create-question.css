@@ -1,44 +1,55 @@
-.question-container {
+.create-question-container {
     width: 1000px;
-    height: 500px;
-    display: flex;
-    margin: 30px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.question-content {
-    width: 100%;
-    height: 100%;
+    height: 600px;
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
 }
 
-.close-container {
+.create-question-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-question-container {
     width: 100%;
     height: 50px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    margin: 35px 20px;
 }
-.close-container button {
-    width: 50px;
-    height: 50px;
+.add-question-container button {
+    width: 80px;
+    height: 80px;
     border: none;
     background-color: transparent;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
+    background-color: #3A4BCD;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 50px;
 }
-.close-container:hover button {
-    color: rgb(0, 119, 255);
+.add-question-container:hover button {
+    /* color: rgb(0, 119, 255); */
+    border: 1px solid;
 }
 
-.content-container {
+.create-content-container {
     width: 100%;
     height: 90%;
     display: flex;
 }
 
-.left-container {
+.create-left-container {
     width: 700px;
     height: 100%;
     display: flex;
@@ -46,37 +57,37 @@
     justify-content: space-evenly;
 }
 
-.topic-content {
+.create-topic-content {
     display: flex;
     flex-direction: column;
     margin: 10px 20px;
 }
-.topic-content label {
+.create-topic-content label {
     font-weight: bold;
 }
-.topic-content textarea {
+.create-topic-content textarea {
     outline: none;
     border: none;
     background-color: rgb(236, 236, 236);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.answer-content {
+.create-answer-content {
     margin: 10px 20px;
     position: relative;
 }
-.answer-content label {
+.create-answer-content label {
     font-weight: bold;
     margin-right: 10px;
 }
-.answer-content input {
+.create-answer-content input {
     outline: none;
     width: 80%;
     border: none;
     border-bottom: 1px solid;
 }
 
-.right-container {
+.create-right-container {
     width: 300px;
     height: 100%;
     display: flex;
@@ -85,7 +96,7 @@
     align-items: center;
 }
 
-.image-content {
+.create-image-content {
     width: 80%;
     height: 250px;
     /* border: 1px solid; */
@@ -94,7 +105,7 @@
     justify-content: center;
     align-items: center;
 }
-.image-content img {
+.create-image-content img {
     color: #fff;
     font-weight: 500;
     font-size: 30px;
@@ -103,14 +114,14 @@
     object-fit: scale-down;
 }
 
-.tools-content {
+.create-tools-content {
     width: 90%;
     height: 50px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
-.tools-content label {
+.create-tools-content label {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -120,7 +131,7 @@
     border: none;
     background-color: #fff;
 }
-.tools-content i {
+.create-tools-content i {
     font-size: 40px;
     cursor: pointer;
 }
@@ -135,38 +146,22 @@ input[type="radio"] {
     margin-left: 35px;
 }
 
-#add-image {
+#create-add-image {
     color: rgb(255, 184, 60);
 }
-#add-image:hover {
+#create-add-image:hover {
     font-size: 42px;
 }
 
-#delete-image {
+#create-delete-image {
     color: rgb(248, 96, 96);
     font-size: 35px;
 }
-#delete-image:hover {
+#create-delete-image:hover {
     font-size: 41px;
 }
 
-#delete-question {
-    color: rgb(248, 96, 96);
-    font-size: 30px;
-}
-#delete-question:hover {
-    font-size: 40px;
-}
-
-#update-question {
-    color: #3A4BCD;
-    font-size: 30px;
-}
-#update-question:hover {
-    font-size: 40px;
-}
-
-.add-container {
+.create-add-container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -175,11 +170,11 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-.add-container:hover {
+.create-add-container:hover {
     border: 1px solid;
 }
 
-.add-container button {
+.create-add-container button {
     width: 300px;
     height: 300px;
     display: flex;
@@ -190,11 +185,11 @@ input[type="radio"] {
     background-color: transparent;
 }
 
-.add-container i {
+.create-add-container i {
     font-size: 120px;
 }
 
-.close-content {
+.create-close-content {
     width: 100%;
     height: 50px;
     display: flex;
@@ -203,7 +198,7 @@ input[type="radio"] {
     margin-right: 50px;
 }
 
-.add-list {
+.create-add-list {
     width: 100%;
     height: 40px;
     display: flex;
@@ -211,7 +206,7 @@ input[type="radio"] {
     align-items: center;
 }
 
-.add-list button {
+.create-add-list button {
     width: 60%;
     height: 100%;
     border: none;
@@ -220,37 +215,6 @@ input[type="radio"] {
     background-color: #3A4BCD;
 }
 
-.add-list button:hover {
+.create-add-list:hover button {
     border: 1px solid;
-}
-
-.footer-content {
-    width: 100%;
-    height: 50px;
-    /* border: 1px solid; */
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 35px 20px;
-}
-
-.footer-content i {
-    margin-right: 30px;
-    cursor: pointer;
-}
-
-.answer-content-view {
-    margin: 10px 20px;
-    position: relative;
-    display: flex;
-}
-.answer-content-view label {
-    font-weight: bold;
-    margin-right: 10px;
-}
-.answer-content-view input {
-    outline: none;
-    width: 80%;
-    border: none;
-    border-bottom: 1px solid;
 }
