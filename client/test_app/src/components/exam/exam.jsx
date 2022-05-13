@@ -68,10 +68,20 @@ const subjects = ["posts", "comments", "albums", "photos", "todos", "users"]
 
 
 function Exam () {
-    const [posts, setPosts] = useState([])
+    // const [posts, setPosts] = useState([])
     const [type, setType] = useState('posts')
 
+    // const getData = () => {
+    //     fetch(`https://jsonplaceholder.typicode.com/${type}`)
+    //     .then((res) => res.json())
+    //     .then((res) => {
+    //         setPosts(res)
+    //     })
+    // }
 
+    // useEffect(() => {
+    //     getData()
+    // }, [type])
 
     return (
         <React.Fragment>
@@ -94,7 +104,7 @@ function Exam () {
                                     if(subs === subject.name){
                                         return (
                                             <button className="btn-category" onClick={() => setType((subs))}>
-                                                <a href={`/exam/${subs}`}>Xem chi tiết</a>
+                                                <a href={`/exam/${subs}`}>{subs}</a>
                                             </button>
                                         )
                                     }

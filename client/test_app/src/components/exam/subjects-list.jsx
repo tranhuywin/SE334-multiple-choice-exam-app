@@ -6,34 +6,40 @@ import "./subjects-list.css"
 import Exam from "./exam.jsx"
 
 
-const subjects = ["posts", "comments", "albums", "photos", "todos", "users"]
+// const subjectList = ["posts", "comments", "albums", "photos", "todos", "users"]
 
 function SubjectsList() {
-    const [posts, setPosts] = useState([])
-    const [type, setType] = useState('posts')
+
+    const [subjects, setSubjects] = useState([])
+
+    const pathName = window.location.pathname.split('/');
+    const getPathName = pathName[pathName.length - 1]
+    console.log(pathName); 
 
     const getData = () => {
-        fetch(`https://jsonplaceholder.typicode.com/${type}`)
+        fetch(`https://jsonplaceholder.typicode.com/${getPathName}`)
         .then((res) => res.json())
         .then((res) => {
-            setPosts(res)
+            setSubjects(res)
+            // console.log(res)
         })
     }
 
     useEffect(() => {
         getData()
-    }, [type])
+    }, [])
 
     return (
         <div>
             <ul>
-                {posts.map(post => (
-                    <li key={post.id}>{post.title || post.name}</li>
-                ))}
+                {subjects.map(sub => {
+                    return (
+                        (
+                            <li key={sub.id}>{sub.title || sub.name}</li>
+                        )
+                    )
+                })}
             </ul>
-            <Route exact path="/post/:id" render={({match}) => (
-                <SubjectsList post={posts.find(p => p.id === match.params.id)} />
-            )} />
         </div>
         
     )
