@@ -89,11 +89,10 @@ function CreateQuestion({addQuestionToList}) {
                                 <i className="fas fa-trash-alt" id="create-delete-image"></i>
                             </label>
                         </div>
-                        
                     </div>
                 </div>
                 <div className="add-question-container">
-                    <button onClick={handleAddQuestion}>+</button>
+                    <button onClick={handleAddQuestion}>Thêm câu hỏi</button>
                 </div>
             </div>
         </div>

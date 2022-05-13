@@ -39,18 +39,25 @@ function Create() {
             <Option nextBtn={setOpenListQues}/>
             <div className="title-questions">
                 <div className="content-title">
-                    <h2>CÂU HỎI TRẮC NGHIỆM</h2>
+                    <h2>TẠO CÂU HỎI</h2>
                 </div>
             </div>
             <CreateQuestion addQuestionToList={setListQuestion}/>
+            <div className="title-questions">
+                <div className="content-title">
+                    <h2>DANH SÁCH CÂU HỎI</h2>
+                </div>
+            </div>
             {openListQues && 
-            <div className="scroll-div">
+            <>
+            {/* <div className="scroll-div"> */}
                 {listQuestion.map((item, index) => {
                     return(
                         <Question key={index} question={item} num={index} handleDelete={remove.bind(this, index)}/>
                     )
                 })}
-            </div>
+            {/* </div> */}
+            </>
             }
 
             <div className="create-content">

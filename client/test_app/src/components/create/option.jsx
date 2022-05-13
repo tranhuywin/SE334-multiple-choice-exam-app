@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./option.css";
-import Select from 'react-select'
+import Select from 'react-select';
 import 'react-dropdown/style.css';
 
 function Option({nextBtn}) {
