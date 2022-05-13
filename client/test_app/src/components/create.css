@@ -11,10 +11,11 @@
 .heading {
     width: 100%;
     height: 80px;
-    background-color: #3A4BCD;
+    /* background-color: #3A4BCD; */
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }
 
 .scroll-div {
@@ -36,8 +37,8 @@
 
 .title-questions {
     width: 100%;
-    height: 100px;
-    background-color: #3A4BCD;
+    height: 80px;
+    /* background-color: #3A4BCD; */
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
@@ -45,16 +46,17 @@
 }
 
 .content-title {
-    width: 1200px;
+    width: 1000px;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    border-bottom: 1px solid;
 }
 
 .content-title h2 {
-    color: #fff;
+    color: #3a4bcd;
     font-size: 30px;
 }
 
