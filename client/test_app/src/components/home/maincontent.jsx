@@ -11,7 +11,7 @@ function MainContent() {
                     <h2 className="slogan">Tạo đề dễ dàng - Kiểm tra đơn giản</h2>
                 </div>
             </div>
-            <div className=""></div>
+            <div className="bottom-content"></div>
             <div className="contents">
                 <div className="main-content">
                     <RecContent img="https://s.tracnghiem.net/assets/images/home/feature3.jpg" title="Tạo đề thi" description="Soạn đề kiểm tra dễ dàng và nhanh chóng."/>

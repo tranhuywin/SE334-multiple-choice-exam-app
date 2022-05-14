@@ -21,7 +21,7 @@ function SignUp({closeSignUpModal}) {
                     <button onClick={() => closeSignUpModal(false)}> X </button>
                 </div>
                 <div className="signup-header">
-                    <h1>Sign Up</h1>
+                    <h1>Đăng ký</h1>
                 </div>
                 <div className="signup-body">
                     <div className="signup-accounts-container">
@@ -30,25 +30,31 @@ function SignUp({closeSignUpModal}) {
                     <div className="signup-accounts-container">
                         <input placeholder="Tên đăng nhập"/>
                     </div>
-                    <div className="signup-accounts-container account-type">
-                        <label>Bạn là: </label>
-                        <div className="type">
-                            <input type="radio" name="account-type"/> Học sinh
-                            <input type="radio" name="account-type"/> Giáo viên
-                        </div>
-                    </div>
                     <div className="signup-accounts-container">
                         <input placeholder="Mật khẩu" type={showPass ? "text" : "password"}/>
-                        {showPass ? <i className="fas fa-eye signup-i-account-container" onClick={() => setShowPass(!showPass)}></i> : <i className="fas fa-eye-slash signup-i-account-container" onClick={() => setShowPass(!showPass)}></i>}
+                        {showPass ? 
+                            <i className="fas fa-eye signup-i-account-container" onClick={() => setShowPass(!showPass)}></i> 
+                            : 
+                            <i className="fas fa-eye-slash signup-i-account-container" onClick={() => setShowPass(!showPass)}></i>
+                        }
+                    </div>
+                    <div className="label-accounts-container">
+                        <label>Bạn là: </label>
+                    </div>
+                    <div className="account-type">
+                        <div className="type">
+                            <input type="radio" name="account-type"/>Học sinh
+                            <input type="radio" name="account-type"/>Giáo viên
+                        </div>
                     </div>
                 </div>
                 <div className="signup-account">
-                    <a href="#">Forgot password?</a>
+                    <a href="#">Quên mật khẩu?</a>
                 </div>
                 <div className="signup-footer">
-                    <button>Login</button>
+                    <button>Đăng ký</button>
                     <div className="signup-account">
-                        <p>Don't have account? <a href="#">Sign up here</a></p>
+                        <p>Đã có tài khoản? <a href="#">Đăng nhập</a></p>
                     </div>
                 </div>
             </div>

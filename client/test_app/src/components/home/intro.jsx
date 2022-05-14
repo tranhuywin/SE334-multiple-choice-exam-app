@@ -53,7 +53,7 @@ function Intro() {
   return (
     <div className="intro-part">
       <div className="container-slider">
-        {ListSlider.map((item, index) => {
+        {/* {ListSlider.map((item, index) => {
           return(
             <div key={index} className={slideIndex === index + 1 ? "slide active-anim" : "slide"}>
               <img src={item.imageSrc} alt="#" className="slider-img"></img>
@@ -69,6 +69,20 @@ function Intro() {
           {Array.from({length: ListSlider.length}).map((item, index) => (
             <div className={slideIndex === index + 1 ? "dot active" : "dot"} onClick={() => moveDot(index + 1)}></div>
           ))}
+        </div> */}
+
+        <div className="text-container">
+          <div className="text-content">
+            <h3>Trắc nghiệm online</h3>
+            <ul>
+              <li>Tạo đề kiểm tra</li>
+              <li>Thi trắc nghiệm trực tuyến</li>
+              <li>Tra cứu kết quả</li>
+            </ul>
+          </div>
+        </div>
+        <div className="img-container">
+          <img src="https://ninequiz.com/static/media/image2.b1d075b4.png" alt="img"></img>
         </div>
       </div>
     </div>

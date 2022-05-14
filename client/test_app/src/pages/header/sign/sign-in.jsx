@@ -11,7 +11,7 @@ function SignIn({closeSignInModal}) {
                     <button onClick={() => closeSignInModal(false)}> X </button>
                 </div>
                 <div className="content-header">
-                    <h1>Sign in</h1>
+                    <h1>Đăng nhập</h1>
                 </div>
                 <div className="content-body">
                     <div className="accounts-container">
@@ -25,13 +25,13 @@ function SignIn({closeSignInModal}) {
                     </div>
                 </div>
                 <div className="forgot-account">
-                    <a href="#">Forgot password?</a>
+                    <a href="#">Quên mật khẩu</a>
                 </div>
                 <div className="content-footer">
                     {/* <button onClick={() => closeSignInModal(false)}>Cancel</button> */}
                     <button>Login</button>
                     <div className="register-account">
-                        <p>Don't have account? <a href="#">Sign up here</a></p>
+                        <p>Chưa có tài khoản? <a href="#">Đăng ký</a></p>
                     </div>
                 </div>
             </div>
