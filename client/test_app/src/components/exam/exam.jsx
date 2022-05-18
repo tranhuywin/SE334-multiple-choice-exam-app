@@ -104,7 +104,7 @@ function Exam () {
                                     if(subs === subject.name){
                                         return (
                                             <button className="btn-category" onClick={() => setType((subs))}>
-                                                <a href={`/exam/${subs}`}>{subs}</a>
+                                                <a href={`/exam/${subs}`}>Xem chi tiết</a>
                                             </button>
                                         )
                                     }
