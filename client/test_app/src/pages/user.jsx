@@ -10,6 +10,7 @@ const Home = React.lazy(() => import("../components/home.jsx"));
 const Exam = React.lazy(() => import("../components/exam/exam.jsx"));
 const ManualDocument = React.lazy(() => import("../components/manual-document.jsx"));
 const Create = React.lazy(() => import("../components/create.jsx"));
+const Results = React.lazy(() => import("../components/results.jsx"));
 
 class User extends Component {
     render() {
@@ -22,6 +23,7 @@ class User extends Component {
                         <Route exact path = "/exam" component={Exam}></Route>
                         <Route exact path = "/manual-document" component={ManualDocument}></Route>
                         <Route exact path = "/create" component={Create}></Route>
+                        <Route exact path = "/results" component={Results}></Route>
                     </Switch>
                 </Router>
                 <Footer></Footer>

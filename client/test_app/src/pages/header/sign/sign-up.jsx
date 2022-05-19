@@ -25,13 +25,13 @@ function SignUp({closeSignUpModal}) {
                 </div>
                 <div className="signup-body">
                     <div className="signup-accounts-container">
-                        <input placeholder="Email"/>
+                        <span className="span-id">*</span><input placeholder="Email"/>
                     </div>
                     <div className="signup-accounts-container">
-                        <input placeholder="Tên đăng nhập"/>
+                        <span className="span-id">*</span><input placeholder="Tên đăng nhập"/>
                     </div>
                     <div className="signup-accounts-container">
-                        <input placeholder="Mật khẩu" type={showPass ? "text" : "password"}/>
+                        <span className="span-id">*</span><input placeholder="Mật khẩu" type={showPass ? "text" : "password"}/>
                         {showPass ? 
                             <i className="fas fa-eye signup-i-account-container" onClick={() => setShowPass(!showPass)}></i> 
                             : 
@@ -39,7 +39,7 @@ function SignUp({closeSignUpModal}) {
                         }
                     </div>
                     <div className="label-accounts-container">
-                        <label>Bạn là: </label>
+                        <label><span className="span-id">*</span>Bạn là: </label>
                     </div>
                     <div className="account-type">
                         <div className="type">
@@ -47,9 +47,6 @@ function SignUp({closeSignUpModal}) {
                             <input type="radio" name="account-type"/>Giáo viên
                         </div>
                     </div>
-                </div>
-                <div className="signup-account">
-                    <a href="#">Quên mật khẩu?</a>
                 </div>
                 <div className="signup-footer">
                     <button>Đăng ký</button>
