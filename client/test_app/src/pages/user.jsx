@@ -23,12 +23,9 @@ class User extends Component {
                         <Route exact path = "/" component={Home}></Route>
                         <Route exact path = "/exam" component={Exam}></Route>
                         <Route exact path = "/manual-document" component={ManualDocument}></Route>
-<<<<<<< HEAD
                         <Route exact path = "/create" component={Create}></Route>
                         <Route exact path = "/results" component={Results}></Route>
-=======
                         <Route exact path = "/exam/:name" component={SubjectsList}></Route>
->>>>>>> origin/thang
                     </Switch>
                 </Router>
                 <Footer></Footer>
