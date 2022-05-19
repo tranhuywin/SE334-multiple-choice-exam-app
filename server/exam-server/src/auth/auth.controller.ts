@@ -2,14 +2,10 @@ import {
   Controller,
   Post,
   Body,
-  UseGuards,
-  Req,
 } from '@nestjs/common';
-import { Request } from 'express';
 import { AuthService } from './auth.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from './dto/user-login.dto';
-import { LoginAdminDTO } from './dto/admin-login.dto';
 import { RegisterUserDTO } from './dto/register.dto';
 import { ForgotPasswordDTO } from './dto/user-forgot-password.dto';
 
@@ -27,14 +23,6 @@ export default class AppController {
       data: {
         user: dataLogin,
       },
-    };
-  }
-
-  @Post('/admin/login')
-  async adminLogin(@Body() admin: LoginAdminDTO): Promise<IResponse> {
-    const dataLogin = await this.authService.adminLogin(admin);
-    return {
-      data: dataLogin,
     };
   }
 

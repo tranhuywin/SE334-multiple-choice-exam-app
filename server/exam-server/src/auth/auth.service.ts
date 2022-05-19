@@ -8,6 +8,7 @@ import { AdminsService } from 'src/admins/admins.service';
 import { LoginAdminDTO } from './dto/admin-login.dto';
 import { ForgotPasswordDTO } from './dto/user-forgot-password.dto';
 import { ConfigService } from '@nestjs/config';
+import { Role } from 'src/enums/roles.enum';
 
 @Injectable()
 export class AuthService {
@@ -52,12 +53,12 @@ export class AuthService {
     if (!isPasswordMatched) {
       throw new BadRequestException('Password is incorrect');
     }
-    const token = await this.signAccessToken(userDB.id, userDB.email);
+    const token = await this.signAccessToken(userDB.id, userDB.email, userDB.role);
 
     return {
       accessToken: token,
-      refreshToken: userDB.refreshToken,
-      avatar: userDB.avatar,
+      email: userDB.email,
+      role: userDB.role,
     };
   }
 
@@ -68,30 +69,6 @@ export class AuthService {
     }
     const token = await this.signAccessToken(user.id, user.email);
     return user;
-  }
-
-  async adminLogin(admin: LoginAdminDTO) {
-    const adminDB = await this.adminService.findOne({
-      userName: admin.username,
-    });
-    if (!adminDB) {
-      throw new BadRequestException('Admin not found');
-    }
-    const passwordDBHash = adminDB.password.replace('$2y$10$', '$2b$10$'); // convert PHP bcrypt hash to Nodejs bcrypt hash
-    const isPasswordMatched = await bcrypt.compare(
-      admin.password,
-      passwordDBHash,
-    );
-    if (!isPasswordMatched) {
-      throw new BadRequestException('Password is incorrect');
-    }
-    const token = await this.signAccessToken(adminDB.id, '', adminDB.role);
-    return {
-      accessToken: token,
-      refreshToken: adminDB.refreshToken,
-      username: adminDB.userName,
-      role: adminDB.role,
-    };
   }
 
   async validateEmail(email: string) {
@@ -138,8 +115,9 @@ export class AuthService {
     const newUser = await this.userService.create({
       email: user.email,
       password: hashPassword,
+      role: user.role,
     });
-    const token = await this.signAccessToken(newUser.id, newUser.email);
+    const token = await this.signAccessToken(newUser.id, newUser.email, newUser.role);
     //create refresh token with userId, email after user is created
     const refreshToken = await this.signRefreshToken(newUser.id, user.email);
     // update refresh token dont need await

@@ -10,4 +10,8 @@ export class RegisterUserDTO {
   @ApiProperty()
   @IsNotEmpty()
   password: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  role: number;
 }
