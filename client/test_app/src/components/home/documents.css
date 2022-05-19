@@ -1,0 +1,38 @@
+.container-document {
+    max-width: 100%;
+    height: 500px;
+    /* margin: 10px auto 0; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* background-color: rgb(240, 242, 245); */
+}
+
+.container-listdocument {
+    width: 900px;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 20px;
+    border-top: 1px solid;
+}
+
+.document-title {
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.listdocument {
+    position: relative;
+    top: 30px;
+    width: 90%;
+    height: 350px;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
