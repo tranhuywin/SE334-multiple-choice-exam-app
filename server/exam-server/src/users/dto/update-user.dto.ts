@@ -13,10 +13,4 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     @IsString()
     @IsOptional()
     fullName?: string;
-
-    @ApiProperty()
-    @IsString()
-    @IsOptional()
-    @Matches(/^[0-9]*$/)
-    wardId?: string;
 }

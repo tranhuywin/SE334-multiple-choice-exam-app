@@ -5,7 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { AuthPhoneNumberDto } from './dto/authPhoneNumber.dto';
+import { AuthEmailDto } from './dto/authPhoneNumber.dto';
 
 @Injectable()
 export class UsersService {
@@ -23,8 +23,8 @@ export class UsersService {
     return await this.userRepo.find(obj);
   }
 
-  async authPhoneNumber(userId: number, authPhoneNumberDto: AuthPhoneNumberDto): Promise<User> {
-    const phoneUser = await this.userRepo.findOne({ phoneNumber: authPhoneNumberDto.phoneNumber });
+  async authEmail(userId: number, authEmailDto : AuthEmailDto): Promise<User> {
+    const phoneUser = await this.userRepo.findOne({ email: authEmailDto.email });
     if (phoneUser) {
       throw new BadRequestException('Phone number is already used by another user');
     }
@@ -33,26 +33,26 @@ export class UsersService {
       where: {
         id: userId,
         zaloId: Not(IsNull()),
-        phoneNumber: IsNull(),
+        email: IsNull(),
       }
     });
     if (!user) {
-      throw new BadRequestException('zaloId is not found or phoneNumber is already avaliable');
+      throw new BadRequestException('zaloId is not found or Email is already avaliable');
     }
-    const hashPassword = await bcrypt.hash(authPhoneNumberDto.password, 10);
+    const hashPassword = await bcrypt.hash(authEmailDto.password, 10);
 
-    await this.userRepo.update(user.id, { phoneNumber: authPhoneNumberDto.phoneNumber, password: hashPassword });
+    await this.userRepo.update(user.id, { email: authEmailDto.email, password: hashPassword });
     return await this.userRepo.findOne(user.id);
   }
 
 
   async findOne(obj: any): Promise<User> {
-    const user = await this.userRepo.findOne(obj, { relations: ['ward', 'ward.district', 'ward.district.province'] });
+    const user = await this.userRepo.findOne(obj);
     return user;
   }
 
-  async updateByPhone(phoneNumber: string, obj: any): Promise<User> {
-    const user = await this.userRepo.findOne({ phoneNumber: phoneNumber, isDeleted: false });
+  async updateByEmail(email: string, obj: any): Promise<User> {
+    const user = await this.userRepo.findOne({ email: email, isDeleted: false });
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -66,21 +66,19 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
 
-    delete updateUserDto.wardId;
-
     await this.userRepo.save(user);
     await this.userRepo.update(user.id, { ...updateUserDto });
     return await this.userRepo.findOne(id);
   }
 
-  async findByPhoneNumber(phoneNumber: string): Promise<{ status: number, message: string }> {
-    const user = await this.userRepo.findOne({ phoneNumber: phoneNumber, isDeleted: false });
+  async findByEmail(email: string): Promise<{ status: number, message: string }> {
+    const user = await this.userRepo.findOne({ email: email, isDeleted: false });
     if (user) {
-        return { status: 1, message: 'phonenumber is already used' }
+        return { status: 1, message: 'email is already used' }
 
     }
     else {
-      return { status: 0, message: 'phonenumber is not avaliable' }
+      return { status: 0, message: 'email is not avaliable' }
     }
   }
 }

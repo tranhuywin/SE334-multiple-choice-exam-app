@@ -11,8 +11,8 @@ export class User {
   @Column({ name: 'refresh_token', length: 255, default: null })
   refreshToken: string;
 
-  @Column({ name: 'phone', length: 11, nullable: true })
-  phoneNumber: string;
+  @Column({ name: 'email', nullable: true })
+  email: string;
 
   @Column({ name: 'address', default: null })
   address: string;

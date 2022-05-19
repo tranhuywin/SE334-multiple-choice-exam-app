@@ -6,11 +6,8 @@ import { RegisterUserDTO } from './dto/register.dto';
 import { LoginUserDto } from './dto/user-login.dto';
 import { AdminsService } from 'src/admins/admins.service';
 import { LoginAdminDTO } from './dto/admin-login.dto';
-import { LoginThirdDTO } from './dto/third-login.dto';
 import { ForgotPasswordDTO } from './dto/user-forgot-password.dto';
 import { ConfigService } from '@nestjs/config';
-import { Role } from 'src/enums/roles.enum';
-import { RegisterThirdPartyDto } from './dto/register-third-party.dto';
 
 @Injectable()
 export class AuthService {
@@ -46,10 +43,8 @@ export class AuthService {
   }
 
   async login(user: LoginUserDto) {
-    let userDB = await this.userService.findOne({ phoneNumber: user.phone, isDeleted: false });
+    let userDB = await this.userService.findOne({ email: user.email, isDeleted: false });
     if (!userDB) {
-      // register
-      //userDB = await this.register({phone: user.phone, password: user.password});
       throw new NotFoundException('User not found');
     }
     const passwordDBHash = userDB.password.replace('$2y$10$', '$2b$10$'); // change PHP bcrypt hash to Nodejs bcrypt hash
@@ -57,7 +52,7 @@ export class AuthService {
     if (!isPasswordMatched) {
       throw new BadRequestException('Password is incorrect');
     }
-    const token = await this.signAccessToken(userDB.id, userDB.phoneNumber);
+    const token = await this.signAccessToken(userDB.id, userDB.email);
 
     return {
       accessToken: token,
@@ -71,7 +66,7 @@ export class AuthService {
     if (!user) {
       throw new BadRequestException('User not found');
     }
-    const token = await this.signAccessToken(user.id, user.phoneNumber);
+    const token = await this.signAccessToken(user.id, user.email);
     return user;
   }
 
@@ -99,8 +94,8 @@ export class AuthService {
     };
   }
 
-  async validatePhone(phone: string) {
-    const userDB = await this.userService.findOne({ phoneNumber: phone }).catch();
+  async validateEmail(email: string) {
+    const userDB = await this.userService.findOne({ email: email }).catch();
     let isQuiz = false;
     if (userDB?.password.includes('$2y$10$')) {
       isQuiz = true;
@@ -112,7 +107,7 @@ export class AuthService {
   }
 
   async forgotPassword(forgot: ForgotPasswordDTO) {
-    const user = await this.userService.findOne({ phoneNumber: forgot.phone });
+    const user = await this.userService.findOne({ email: forgot.email });
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -123,41 +118,40 @@ export class AuthService {
       throw new BadRequestException('Time update have some problems');
     }
     const newPassword = bcrypt.hashSync(forgot.password, 10);
-    await this.userService.updateByPhone(forgot.phone, {
+    await this.userService.updateByEmail(forgot.email, {
       password: newPassword,
     });
-    const token = await this.signAccessToken(user.id, user.phoneNumber);
+    const token = await this.signAccessToken(user.id, user.email);
     return {
       accessToken: token,
-      phoneNumber: user.phoneNumber,
+      email: user.email,
     };
   }
 
   async register(user: RegisterUserDTO) {
-    const userDB = await this.userService.findOne({ phoneNumber: user.phone }).catch(err => { });
+    const userDB = await this.userService.findOne({ email: user.email }).catch(err => { });
     if (userDB) {
       throw new BadRequestException('User already exists');
     }
     const hashPassword = await bcrypt.hash(user.password, 10);
     //create user without refresh token
     const newUser = await this.userService.create({
-      phoneNumber: user.phone,
+      email: user.email,
       password: hashPassword,
-      refreshToken: '',
     });
-    const token = await this.signAccessToken(newUser.id, newUser.phoneNumber);
+    const token = await this.signAccessToken(newUser.id, newUser.email);
     //create refresh token with userId, phone after user is created
-    const refreshToken = await this.signRefreshToken(newUser.id, user.phone);
+    const refreshToken = await this.signRefreshToken(newUser.id, user.email);
     // update refresh token dont need await
-    this.userService.updateByPhone(user.phone, {
+    this.userService.updateByEmail(user.email, {
       refreshToken: refreshToken,
     });
     delete newUser.password;
     return { ...newUser, refreshToken: refreshToken, token };
   }
 
-  async signAccessToken(userId: number, phoneNumber: string, role: number = 0): Promise<string> {
-    const token = await this.jwtService.sign({ userId, phoneNumber, role },
+  async signAccessToken(userId: number, email: string, role: number = 0): Promise<string> {
+    const token = await this.jwtService.sign({ userId, email, role },
       {
         expiresIn: this.configService.get('JWT_EXPIRATION'),
         secret: this.configService.get('JWT_SECRET')
@@ -165,8 +159,8 @@ export class AuthService {
     return token;
   }
 
-  async signRefreshToken(userId: number, phoneNumber: string): Promise<string> {
-    const refreshToken = await this.jwtService.sign({ userId, phoneNumber },
+  async signRefreshToken(userId: number, email: string): Promise<string> {
+    const refreshToken = await this.jwtService.sign({ userId, email },
       {
         expiresIn: this.configService.get('JWT_REFRESH_TOKEN_EXPIRATION'),
         secret: this.configService.get('JWT_REFRESH_TOKEN_SECRET')

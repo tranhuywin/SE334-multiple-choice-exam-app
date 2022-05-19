@@ -4,7 +4,7 @@ import { IsDateString, IsNotEmpty, MinLength } from 'class-validator';
 export class ForgotPasswordDTO {
   @ApiProperty()
   @IsNotEmpty()
-  phone: string;
+  email: string;
 
   @ApiProperty()
   @IsNotEmpty()

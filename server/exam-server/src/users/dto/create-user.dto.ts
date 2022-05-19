@@ -8,10 +8,5 @@ export class CreateUserDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  @Matches(/^[0-9]*$/)
-  phoneNumber: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  refreshToken: string;
+  email: string;
 }
