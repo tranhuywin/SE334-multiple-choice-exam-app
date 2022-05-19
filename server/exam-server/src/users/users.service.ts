@@ -24,9 +24,9 @@ export class UsersService {
   }
 
   async authEmail(userId: number, authEmailDto : AuthEmailDto): Promise<User> {
-    const phoneUser = await this.userRepo.findOne({ email: authEmailDto.email });
-    if (phoneUser) {
-      throw new BadRequestException('Phone number is already used by another user');
+    const emailUser = await this.userRepo.findOne({ email: authEmailDto.email });
+    if (emailUser) {
+      throw new BadRequestException('email is already used by another user');
     }
 
     const user = await this.userRepo.findOne({

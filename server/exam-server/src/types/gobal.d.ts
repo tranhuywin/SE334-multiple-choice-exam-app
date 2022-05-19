@@ -7,7 +7,7 @@ declare global {
     details?: string;
   }
   interface IJwtPayload {
-    phoneNumber: string;
+    email: string;
     userId: number;
     role: number
   }

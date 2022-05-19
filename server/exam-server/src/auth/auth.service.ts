@@ -140,7 +140,7 @@ export class AuthService {
       password: hashPassword,
     });
     const token = await this.signAccessToken(newUser.id, newUser.email);
-    //create refresh token with userId, phone after user is created
+    //create refresh token with userId, email after user is created
     const refreshToken = await this.signRefreshToken(newUser.id, user.email);
     // update refresh token dont need await
     this.userService.updateByEmail(user.email, {
