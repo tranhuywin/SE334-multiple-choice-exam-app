@@ -3,6 +3,8 @@ import "./sign-in.css"
 import { useState } from "react";
 
 function SignIn({closeSignInModal}) {
+    const [emailAcc, setEmailAcc] = useState("");
+    const [passAcc, setPassAcc] = useState("");
     const [showPass, setShowPass] = useState(false);
     return(
         <div className="modal-background">
@@ -16,11 +18,11 @@ function SignIn({closeSignInModal}) {
                 <div className="content-body">
                     <div className="accounts-container">
                         <i class="fas fa-user"></i>
-                        <input placeholder="Email"/>
+                        <input placeholder="Email" onChange={e => setEmailAcc(e.target.value)}/>
                     </div>
                     <div className="accounts-container">
                         <i class="fas fa-lock"></i>
-                        <input placeholder="Password" type={showPass ? "text" : "password"}/>
+                        <input placeholder="Password" type={showPass ? "text" : "password"} onChange={e => setPassAcc(e.target.value)}/>
                         {showPass ? <i className="fas fa-eye i-account-container" onClick={() => setShowPass(!showPass)}></i> : <i className="fas fa-eye-slash i-account-container" onClick={() => setShowPass(!showPass)}></i>}
                     </div>
                 </div>
@@ -28,8 +30,7 @@ function SignIn({closeSignInModal}) {
                     <a href="#">Quên mật khẩu</a>
                 </div>
                 <div className="content-footer">
-                    {/* <button onClick={() => closeSignInModal(false)}>Cancel</button> */}
-                    <button>Login</button>
+                    <button>Đăng nhập</button>
                     <div className="register-account">
                         <p>Chưa có tài khoản? <a href="#">Đăng ký</a></p>
                     </div>
