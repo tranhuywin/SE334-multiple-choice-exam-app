@@ -54,7 +54,7 @@ function SubjectsList() {
                                     </div>
                                 </div>
 
-                                <a href="/exam/:name" className="btn-starting-test">Bắt đầu thi</a>
+                                <a href={`/exam/${getPathName}`} className="btn-starting-test">Bắt đầu thi</a>
                             </li>
                     )
                 })}
