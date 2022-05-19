@@ -1,0 +1,200 @@
+.NavbarItems{
+    /* background: #7B87DD; */
+    background: #fff;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    border: none;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.navbar-logo {
+    color: #333;
+    justify-self: start;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.fa-react {
+    margin-left: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.nav-menu {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    grid-gap: 20px;
+    list-style: none;
+    text-align: center;
+    width: 800px;
+    justify-content: end;
+    margin-right: 2rem;
+    margin-bottom: 0px !important;
+}
+
+.nav-links{
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.nav-links:hover {
+    background-color: rgb(255, 255, 255);
+    color: #333;
+    border-bottom: 2px solid #333;
+    /* border-radius: 4px; */
+    /* transition: all 0.2s ease-out; */
+}
+
+.fa-bars {
+    color: #333;
+}
+
+.nav-links-button {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+}
+
+.slash {
+    color: #fff;
+    font-size: 30px;
+    padding: 0px 0px;
+}
+
+@media screen and (max-width: 1280px) {
+    .NavbarItems {
+        position: relative;
+    }
+
+    .slash {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 780px;
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        opacity: 1;
+        transition: all 0.5s ease;
+    }
+
+    .nav-menu.active {
+        background: #fff;
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
+    }
+
+    .nav-links {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+
+    .nav-links:hover {
+        /* background-color: #7B87DD; */
+        background-color: #3A4BCD;
+        color: #fff;
+        border-radius: 0;
+    }
+
+    .navbar-logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(25%, 50%);
+    }
+
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    .fa-times {
+        color: #333;
+        font-size: 2rem;
+    }
+
+    .nav-links-button {
+        display: block;
+        text-align: center;
+        padding: 0.5rem;
+        margin: 1.5rem auto;
+        border-radius: 4px;
+        width: 80%;
+        background:#fff;
+        text-decoration: none;
+        color: #333;
+        font-size: 1.2rem;
+    }
+
+    .nav-links-button:hover {
+        /* background-color: #7B87DD; */
+        background: #3A4BCD;
+        color: #fff;
+        border-radius: 0;
+        transition: 250ms;
+    }
+
+    Button {
+        display: none;
+    }
+}
+
+.dropdown {
+    width: 200px;
+    position: absolute;
+    padding: 0;
+    top: 62px;
+    list-style: none;
+    text-align: start;
+    z-index: 2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown li {
+    /* background: #7B87DD; */
+    background: #fff;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    /* background: #A7AFE8; */
+    background: rgba(255, 255, 255, 0.5);
+    color: #333;
+}
+
+.dropdown.clicked {
+    display: none;
+}
+
+.subitem-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #333;
+    padding: 16px;
+}
+
+.li-transition {
+    transition: all 0.5s ease-out;
+}
