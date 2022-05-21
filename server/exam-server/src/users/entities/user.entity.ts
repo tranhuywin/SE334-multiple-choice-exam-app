@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Exam } from 'src/exams/entities/exam.entity';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
 @Entity({ name: 'users', engine: 'InnoDB' })
 export class User {
@@ -29,9 +30,12 @@ export class User {
   @Column({name: 'is_delete', default: false})
   isDeleted: boolean;
 
+  @OneToMany(() => Exam, exam => exam.user)
+  exam: Exam[];
+
   @CreateDateColumn({ name: "created_at" })
-  createdAt: string;
+  createdAt: Date;
 
   @UpdateDateColumn({ name: "updated_at" })
-  updatedAt: string; 
+  updatedAt: Date; 
 }

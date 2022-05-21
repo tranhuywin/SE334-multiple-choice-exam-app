@@ -20,19 +20,10 @@ export default class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: IJwtPayload) {
-    if (payload.role === Role.USER) {
-      const user = await this.authService.validateUserById(payload.userId);
-      if (!user) {
-        throw new UnauthorizedException();
-      }
-      return user;
+    const user = await this.authService.validateUserById(payload.userId);
+    if (!user) {
+      throw new UnauthorizedException();
     }
-    else{
-      const admin = await this.authService.validateAdminById(payload.userId);
-      if (!admin) {
-        throw new UnauthorizedException();
-      }
-      return admin;
-    }
+    return user;
   }
 }

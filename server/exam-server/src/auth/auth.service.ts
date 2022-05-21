@@ -15,7 +15,6 @@ export class AuthService {
   constructor(
     private readonly userService: UsersService,
     private readonly jwtService: JwtService,
-    private readonly adminService: AdminsService,
     private readonly configService: ConfigService,
   ) { }
 
@@ -33,14 +32,6 @@ export class AuthService {
       throw new BadRequestException('User not found');
     }
     return user;
-  }
-
-  async validateAdminById(id: number) {
-    const admin = await this.adminService.findOne({ id: id });
-    if (!admin) {
-      throw new BadRequestException('Admin not found');
-    }
-    return admin;
   }
 
   async login(user: LoginUserDto) {
@@ -111,6 +102,10 @@ export class AuthService {
       throw new BadRequestException('User already exists');
     }
     const hashPassword = await bcrypt.hash(user.password, 10);
+    //check role of user
+    if(user.role !== Role.STUDENT && user.role !== Role.TEACHER){
+      throw new BadRequestException('Role is not correct');
+    }
     //create user without refresh token
     const newUser = await this.userService.create({
       email: user.email,
@@ -118,14 +113,9 @@ export class AuthService {
       role: user.role,
     });
     const token = await this.signAccessToken(newUser.id, newUser.email, newUser.role);
-    //create refresh token with userId, email after user is created
-    const refreshToken = await this.signRefreshToken(newUser.id, user.email);
     // update refresh token dont need await
-    this.userService.updateByEmail(user.email, {
-      refreshToken: refreshToken,
-    });
     delete newUser.password;
-    return { ...newUser, refreshToken: refreshToken, token };
+    return { ...newUser, token };
   }
 
   async signAccessToken(userId: number, email: string, role: number = 0): Promise<string> {
