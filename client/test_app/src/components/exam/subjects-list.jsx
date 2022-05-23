@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import "./subjects-list.css"
-// import Header from "../pages/header.jsx"
+import SignIn from "../../pages/header/sign/sign-in";
+import SignUp from "../../pages/header/sign/sign-in";
 
 
 // const subjectList = ["posts", "comments", "albums", "photos", "todos", "users"]
@@ -13,6 +14,10 @@ import "./subjects-list.css"
 function SubjectsList() {
 
     const [subjects, setSubjects] = useState([])
+
+    const [signin, setSignIn] = useState(false);
+
+    const [signup, setSignUp] = useState(false);
 
     const pathName = window.location.pathname.split('/');
     const getPathName = pathName[pathName.length - 1]
@@ -33,6 +38,8 @@ function SubjectsList() {
 
     return (
         <div>
+            {signin && <SignIn closeSignInModal={setSignIn}/>}
+            {signup && <SignUp closeSignUpModal={setSignUp}/>}
             <ul className="subject-list">
                 <h4>Đề Thi Trắc Nghiệm THPT Quốc Gia môn {getPathName} 2022</h4>
                 {subjects.map(sub => {
@@ -54,7 +61,9 @@ function SubjectsList() {
                                     </div>
                                 </div>
 
-                                <a href={`/exam/${getPathName}`} className="btn-starting-test">Bắt đầu thi</a>
+                                <button className="btn-starting-test" onClick={() => {setSignIn(true)}}>
+                                    <a href="#" >Bắt đầu thi</a>
+                                </button>
                             </li>
                     )
                 })}
