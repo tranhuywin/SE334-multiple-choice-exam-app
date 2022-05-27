@@ -21,7 +21,7 @@ function SubjectsList() {
 
     const pathName = window.location.pathname.split('/');
     const getPathName = pathName[pathName.length - 1]
-    console.log(pathName); 
+    // console.log(typeof(getPathName)); 
 
     const getData = () => {
         fetch(`https://jsonplaceholder.typicode.com/${getPathName}`)
@@ -61,8 +61,8 @@ function SubjectsList() {
                                     </div>
                                 </div>
 
-                                <button className="btn-starting-test" onClick={() => {setSignIn(true)}}>
-                                    <a href="#" >Bắt đầu thi</a>
+                                <button className="btn-starting-test" onClick={() => {setSignIn(false)}}>
+                                    <a href="/test" >Bắt đầu thi</a>
                                 </button>
                             </li>
                     )

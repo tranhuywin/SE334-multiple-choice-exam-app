@@ -131,7 +131,7 @@ function Exam () {
                 )
             })}
         </React.Fragment>
- )
+    )
 }
 
 export default Exam;
