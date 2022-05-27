@@ -1,11 +1,13 @@
 .container-test {
     width: 800px;
-    /* height: 300px; */
-    /* background-color: #333; */
     margin: 20px auto;
+}
+
+.doing-tests {
     border: 1px solid rgb(180, 177, 177);
     border-radius: 10px;
     padding: 20px;
+    margin-bottom: 10px;
 }
 
 .container-test span {
@@ -31,4 +33,40 @@ margin: 20px 0;
 
 .container-test__answer input[type="radio"] {
     transform: scale(1.5);
+}
+
+.testing-time-container {
+    height: 50px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color: #7685fc;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.testing-time {
+    color: #333;
+    /* width: 100px; */
+    height: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.testing-time-icon {
+    margin-right: 5px;
+    color:rgb(78, 78, 78);
+}
+
+.testing-time-btn {
+    background-color: rgb(17, 201, 17);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 0 10px;
 }
