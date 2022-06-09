@@ -21,6 +21,9 @@ export class SubjectsService {
   }
 
   async findOne(id: number): Promise<Subject> {
-    return await this.subjectRepo.findOne(id);
+    return await this.subjectRepo.findOne({
+      where: { id },
+      relations: ['exam'],
+    });
   } 
 }

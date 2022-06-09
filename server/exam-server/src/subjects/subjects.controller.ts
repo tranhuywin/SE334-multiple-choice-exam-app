@@ -15,7 +15,12 @@ export class SubjectsController {
   }
 
   @Get()
-  findAll() {
-    return this.subjectsService.findAll();
+  async findAll() {
+    return await this.subjectsService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return await this.subjectsService.findOne(+id);
   }
 }

@@ -32,14 +32,4 @@ export class ExamsController {
   async findOne(@Param('id') id: string) {
     return await this.examsService.findOne(+id);
   }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateExamDto: UpdateExamDto) {
-  //   return this.examsService.update(+id, updateExamDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.examsService.remove(+id);
-  // }
 }
