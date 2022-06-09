@@ -28,10 +28,10 @@ export class ExamsController {
     return await this.examsService.findAll();
   }
 
-  // @Get(':id')`
-  // findOne(@Param('id') id: string) {
-  //   return this.examsService.findOne(+id);
-  // }
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return await this.examsService.findOne(+id);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateExamDto: UpdateExamDto) {

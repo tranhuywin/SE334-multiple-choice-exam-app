@@ -42,8 +42,11 @@ export class ExamsService {
     return `This action returns all exams`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} exam`;
+  async findOne(id: number) {
+    return await this.examRepo.findOne({
+      where: { id },
+      relations: ['questions', 'questions.answerA', 'questions.answerB', 'questions.answerC', 'questions.answerD', 'subject', 'user'],
+    });
   }
 
   update(id: number, updateExamDto: UpdateExamDto) {
