@@ -38,14 +38,14 @@ export class ExamsService {
 
   }
 
-  findAll() {
-    return `This action returns all exams`;
+  async findAll() {
+    return await this.examRepo.find();
   }
 
   async findOne(id: number) {
     return await this.examRepo.findOne({
       where: { id },
-      relations: ['questions', 'questions.answerA', 'questions.answerB', 'questions.answerC', 'questions.answerD', 'subject', 'user'],
+      relations: ['questions','questions.answerA', 'questions.answerB', 'questions.answerC', 'questions.answerD', 'subject', 'user'],
     });
   }
 
