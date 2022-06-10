@@ -1,8 +1,8 @@
-const HomePage = "/";
-const ExamPage = "/exam";
-const ManualDocumentPage = "/manual-document";
-const CreatePage = "/create";
-const ResultsPage = "/results";
+const HomePage = "/user";
+const ExamPage = "/user/exam";
+const ManualDocumentPage = "/user/manual-document";
+const CreatePage = "/user/create";
+const ResultsPage = "/user/results";
 
 export const navItems = [
     {
@@ -90,7 +90,7 @@ export const navItems = [
     },
     {
       id: 3,
-      title: 'Giáo viên',
+      title: 'Nghiệp vụ',
       url: CreatePage,
       cName: 'nav-links',
       submenu: [

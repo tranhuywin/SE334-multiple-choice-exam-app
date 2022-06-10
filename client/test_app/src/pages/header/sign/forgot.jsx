@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./sign-up.css";
 
-function SignUp() {
+function Forgot() {
     const [showPass, setShowPass] = useState(false);
     return(
         <div className="signup-background">
@@ -45,4 +45,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default Forgot;
