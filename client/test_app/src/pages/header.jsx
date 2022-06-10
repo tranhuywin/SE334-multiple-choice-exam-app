@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import "./header.css";
 
-import  { Button } from "../components/button";
 import { navItems } from "./header/navbarItem";
 import MenuItem from "./header/menuItem";
-import SignIn from "./header/sign/sign-in";
-import SignUp from "./header/sign/sign-up";
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+    let navigate = useNavigate();
     const [click, setClick] = useState(false);
+    const [openAction, setOpenAction] = useState(false);
+    const [user, setUser] = useState("")
 
-    const [signin, setSignIn] = useState(false);
+    const HandleSignOut = () => {
+      localStorage.removeItem("email");
+      navigate('/');
+    }
 
-    const [signup, setSignUp] = useState(false);
+    useEffect(() => {
+        setUser(localStorage.getItem("email"));
+    }, []);
 
     return(
       <React.Fragment>
           <div>
-            {signin && <SignIn closeSignInModal={setSignIn}/>}
-            {signup && <SignUp closeSignUpModal={setSignUp}/>}
             <nav className="NavbarItems">
               <h1 className="navbar-logo">REACT<i className="fab fa-react"></i></h1>
               <div className="menu-icon" onClick={() => setClick(!click)}>
@@ -32,8 +36,17 @@ function Header() {
                   );
                 })}
               </ul>
-              <Button onClick={() => setSignIn(true)}>Sign in</Button>
-              <Button onClick={() => setSignUp(true)}>Sign up</Button>
+              <div className="welcome-user">
+                <p>Xin chào, {user}</p>
+                <button className="list-action" onClick={() => setOpenAction(!openAction)}>
+                  <i className={openAction ? 'fas fa-caret-up' : 'fas fa-caret-down'}></i>
+                </button>
+                <ul className={openAction ? 'opened' : 'opened clicked'}>
+                  <li><a href="!#">Thông tin cá nhân</a></li>
+                  <li><a href="!#">Cài đặt</a></li>
+                  <li><a href="!#" onClick={HandleSignOut}>Đăng xuất</a></li>
+                </ul>
+              </div>
             </nav>
           </div>
       </React.Fragment>

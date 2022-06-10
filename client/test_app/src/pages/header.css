@@ -27,7 +27,7 @@
 .nav-menu {
     display: grid;
     grid-template-columns: repeat(7, auto);
-    grid-gap: 20px;
+    grid-gap: 35px;
     list-style: none;
     text-align: center;
     width: 800px;
@@ -167,7 +167,7 @@
     list-style: none;
     text-align: start;
     z-index: 2;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 0px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dropdown li {
@@ -197,4 +197,69 @@
 
 .li-transition {
     transition: all 0.5s ease-out;
+}
+
+.welcome-user {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-user p {
+    margin-bottom: 0px !important;
+}
+
+.list-action {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+.list-action:hover {
+    background-color: rgba(226, 226, 226, 0.5);
+}
+
+.list-action i {
+    font-size: 20px;
+    outline: none;
+}
+
+.opened {
+    width: 250px;
+    position: absolute;
+    padding: 0;
+    top: 70px;
+    right: 370px;
+    list-style: none;
+    text-align: start;
+    z-index: 2;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 0px 0 rgba(0, 0, 0, 0.19);
+}
+.opened.clicked {
+    display: none;
+}
+
+.opened li {
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.opened li:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.opened a {
+    text-decoration: none;
+    color: #000;
+}
+.opened a:hover {
+    color: #fff;
 }
