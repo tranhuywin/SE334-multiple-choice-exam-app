@@ -65,19 +65,19 @@ function Test () {
                 <span>Câu 1</span>
                 <div className="container-test__question">Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Toán sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Toán được sưu tập qua các năm với đầy đủ lời giải chi tiết.</div>
                 <div className="container-test__answer">
-                    <input type="radio" id="answer-a" value="A. ABC"/>
+                    <input type="radio" id="answer-a" value="A. ABC" name="answer"/>
+                    <label for="answer-a">A. ABC</label>
+                </div>
+                <div className="container-test__answer">
+                    <input type="radio" id="answer-b" value="A. ABC" name="answer"/>
                     <label for="answer-a">A. ABC</label><br></br>
                 </div>
                 <div className="container-test__answer">
-                    <input type="radio" id="answer-b" value="A. ABC"/>
+                    <input type="radio" id="answer-c" value="A. ABC" name="answer"/>
                     <label for="answer-a">A. ABC</label><br></br>
                 </div>
                 <div className="container-test__answer">
-                    <input type="radio" id="answer-c" value="A. ABC"/>
-                    <label for="answer-a">A. ABC</label><br></br>
-                </div>
-                <div className="container-test__answer">
-                    <input type="radio" id="answer-d" value="A. ABC"/>
+                    <input type="radio" id="answer-d" value="A. ABC" name="answer"/>
                     <label for="answer-a">A. ABC</label><br></br>
                 </div>
                 

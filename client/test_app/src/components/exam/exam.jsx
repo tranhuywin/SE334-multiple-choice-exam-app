@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import  { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import SubjectsList from "./subjects-list"
+import SubjectsList from "./subjects-list.jsx";
 import "./exam.css"
 import ToanHoc from "../../assets/images/toan-hoc.png";
 import HoaHoc from "../../assets/images/hoa-hoc.png";

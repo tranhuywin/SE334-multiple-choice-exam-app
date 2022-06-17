@@ -62,7 +62,7 @@ function SubjectsList() {
                                 </div>
 
                                 <button className="btn-starting-test" onClick={() => {setSignIn(false)}}>
-                                    <a href="/user/exam/test" >Bắt đầu thi</a>
+                                    <a href={`/user/exam/${getPathName}/test`} >Bắt đầu thi</a>
                                 </button>
                             </li>
                     )
