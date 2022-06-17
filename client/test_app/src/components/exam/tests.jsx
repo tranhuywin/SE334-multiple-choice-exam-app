@@ -80,15 +80,16 @@ function Test () {
                     <input type="radio" id="answer-d" value="A. ABC"/>
                     <label for="answer-a">A. ABC</label><br></br>
                 </div>
+                
+                <div className="testing-time-container">
+                    <div className="testing-time">
+                        <FontAwesomeIcon icon={faClock} className="testing-time-icon"/>
+                        <span className="countdown-timer">{timer}</span>
+                    </div>
+                    <button className="testing-time-btn" onClick={onClickReset}>Kết thúc bài thi</button>
+                </div>
             </div>
 
-            <div className="testing-time-container">
-                <div className="testing-time">
-                    <FontAwesomeIcon icon={faClock} className="testing-time-icon"/>
-                    <span className="countdown-timer">{timer}</span>
-                </div>
-                <button className="testing-time-btn">Kết thúc bài thi</button>
-            </div>
         </div>
     )
 }
