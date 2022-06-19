@@ -11,7 +11,7 @@ export class UserExamController {
   constructor(private readonly userExamService: UserExamService) {}
 
   @Post()
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
   create(@Body() createUserExamDto: CreateUserExamDto,  @Request() req: Request & { user: User }) {
     return this.userExamService.create(createUserExamDto, req?.user?.id || 1);

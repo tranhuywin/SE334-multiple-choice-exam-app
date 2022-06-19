@@ -27,8 +27,7 @@ export class UserExamService {
     let score = 0;
     const correctAnswers = exam.questions.map((question, index) => {
       let isCorrect = false;
-      console.log(createUserExamDto.answers[index]);
-      console.log(exam.questions[index]);
+      
       if (createUserExamDto.answers[index] === 1 && question.answerA.isCorrect) {
         score++;
         isCorrect = true;
