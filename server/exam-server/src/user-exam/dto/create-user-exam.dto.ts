@@ -5,8 +5,5 @@ export class CreateUserExamDto {
     examId: number;
 
     @ApiProperty()
-    questions: number[];
-
-    @ApiProperty()
     answers: number[];
 }

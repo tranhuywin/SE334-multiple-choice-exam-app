@@ -19,27 +19,29 @@ export class UserExamService {
     private readonly usersService: UsersService,
   ) { }
 
-  public async create(createUserExamDto: CreateUserExamDto, userId: string) {
+  public async create(createUserExamDto: CreateUserExamDto, userId: number) {
     const exam = await this.examsService.findOne(createUserExamDto.examId);
     const userExam = new UserExam();
-
+    //console.log(exam.questions);
     //caculate score
     let score = 0;
-    const correctAnswers = createUserExamDto.questions.map((question, index) => {
+    const correctAnswers = exam.questions.map((question, index) => {
       let isCorrect = false;
-      if (createUserExamDto.answers[index] === 1 && exam.questions[index].answerA.isCorrect) {
+      console.log(createUserExamDto.answers[index]);
+      console.log(exam.questions[index]);
+      if (createUserExamDto.answers[index] === 1 && question.answerA.isCorrect) {
         score++;
         isCorrect = true;
       }
-      if (createUserExamDto.answers[index] === 2 && exam.questions[index].answerB.isCorrect) {
+      if (createUserExamDto.answers[index] === 2 && question.answerB.isCorrect) {
         score++;
         isCorrect = true;
       }
-      if (createUserExamDto.answers[index] === 3 && exam.questions[index].answerC.isCorrect) {
+      if (createUserExamDto.answers[index] === 3 && question.answerC.isCorrect) {
         score++;
         isCorrect = true;
       }
-      if (createUserExamDto.answers[index] === 4 && exam.questions[index].answerD.isCorrect) {
+      if (createUserExamDto.answers[index] === 4 && question.answerD.isCorrect) {
         score++;
         isCorrect = true;
       }
@@ -57,7 +59,7 @@ export class UserExamService {
     const data = await this.userExamRepo.save(userExam);
     //create correctAnswer
     await this.correctAnswerRepo.save(correctAnswers);
-    return data;
+    return {score};
   }
 
   findAll() {
