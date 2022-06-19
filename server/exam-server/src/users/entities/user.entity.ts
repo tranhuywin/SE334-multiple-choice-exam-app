@@ -1,4 +1,5 @@
 import { Exam } from 'src/exams/entities/exam.entity';
+import { UserExam } from 'src/user-exam/entities/user-exam.entity';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 
 @Entity({ name: 'users', engine: 'InnoDB' })
@@ -32,6 +33,9 @@ export class User {
 
   @OneToMany(() => Exam, exam => exam.user)
   exam: Exam[];
+
+  @OneToMany(() => UserExam, userExam => userExam.user)
+  userExam: UserExam[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

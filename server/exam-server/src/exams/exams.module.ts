@@ -10,6 +10,7 @@ import { UsersModule } from 'src/users/users.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Exam]), QuestionsModule, SubjectsModule, UsersModule],
   controllers: [ExamsController],
-  providers: [ExamsService]
+  providers: [ExamsService],
+  exports: [ExamsService],
 })
 export class ExamsModule { }

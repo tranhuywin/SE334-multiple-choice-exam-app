@@ -20,7 +20,7 @@ export class ExamsController {
   @ApiBearerAuth('JWT-auth')
   @Post()
   async create(@Body() createExamDto: CreateExamDto, @Request() req: Request & { user: User }) {
-    return await this.examsService.create(createExamDto, req.user.id);
+    return await this.examsService.create(createExamDto, req?.user?.id || 1);
   }
 
   @Get()
