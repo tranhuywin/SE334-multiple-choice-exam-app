@@ -2,6 +2,7 @@ import React from "react";
 import "./sign-in.css"
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import SignApi from "../../api/signApi";
 
 function SignIn() {
     let navigate = useNavigate();
@@ -10,11 +11,22 @@ function SignIn() {
     const [passAcc, setPassAcc] = useState("");
     const [showPass, setShowPass] = useState(false);
 
-    const handleSignIn = () => {
-        if(emailAcc !== "" && passAcc !== "") {
-            localStorage.setItem("email", emailAcc);
-            navigate("/user");
-        }
+    const params = {
+        email: emailAcc,
+        password: passAcc,
+    };
+
+    const handleSignIn = async () => {
+        
+        await SignApi.login(params)
+            .then((res) => {
+                if(res !== null) {
+                    navigate("/user");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     return(
