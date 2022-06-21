@@ -9,7 +9,6 @@ import SignIn from "../../pages/header/sign/sign-in";
 import SignUp from "../../pages/header/sign/sign-in";
 
 
-// const subjectList = ["posts", "comments", "albums", "photos", "todos", "users"]
 
 function SubjectsList() {
 
