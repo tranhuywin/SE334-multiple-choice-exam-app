@@ -24,24 +24,26 @@ export class UserExamService {
     const userExam = new UserExam();
     //console.log(exam.questions);
     //caculate score
+    const totalQuestion = exam.questions.length;
+    const scorceAQuestion = 10 / totalQuestion;
     let score = 0;
     const correctAnswers = exam.questions.map((question, index) => {
       let isCorrect = false;
-      
+
       if (createUserExamDto.answers[index] === 1 && question.answerA.isCorrect) {
-        score++;
+        score += scorceAQuestion;
         isCorrect = true;
       }
       if (createUserExamDto.answers[index] === 2 && question.answerB.isCorrect) {
-        score++;
+        score += scorceAQuestion;
         isCorrect = true;
       }
       if (createUserExamDto.answers[index] === 3 && question.answerC.isCorrect) {
-        score++;
+        score += scorceAQuestion;
         isCorrect = true;
       }
       if (createUserExamDto.answers[index] === 4 && question.answerD.isCorrect) {
-        score++;
+        score += scorceAQuestion;
         isCorrect = true;
       }
       // create correctAnswer
@@ -58,22 +60,13 @@ export class UserExamService {
     const data = await this.userExamRepo.save(userExam);
     //create correctAnswer
     await this.correctAnswerRepo.save(correctAnswers);
-    return {score};
+    return { score };
   }
 
-  findAll() {
-    return `This action returns all userExam`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} userExam`;
-  }
-
-  update(id: number, updateUserExamDto: UpdateUserExamDto) {
-    return `This action updates a #${id} userExam`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} userExam`;
+  public async findAll(userId: number) {
+    return this.userExamRepo.find({
+      where: { user: { id: userId } },
+      relations: ['correctAnswer', 'user'],
+    });
   }
 }
