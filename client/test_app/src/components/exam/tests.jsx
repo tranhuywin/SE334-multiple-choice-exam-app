@@ -7,59 +7,68 @@ import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import "./tests.css";
 // import Question from "./question.jsx";
 
 const questions = [
   {
     id: "1",
-    image:
+    urlImage:
       "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    questionText: "What is the capital of France?",
-    answerOptions: [
-      { answerText: "New York", isCorrect: false },
-      { answerText: "London", isCorrect: false },
-      { answerText: "Paris", isCorrect: true },
-      { answerText: "Dublin", isCorrect: false },
-    ],
+    content: "What is the capital of France?",
+    answerA: { content: "New York", isCorrect: false },
+    answerB: { content: "London", isCorrect: false },
+    answerC: { content: "Paris", isCorrect: true },
+    answerD: { content: "Dublin", isCorrect: false },
   },
   {
     id: "2",
-    image:
+    urlImage:
       "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    questionText: "Who is CEO of Tesla?",
-    answerOptions: [
-      { answerText: "Jeff Bezos", isCorrect: false },
-      { answerText: "Elon Musk", isCorrect: true },
-      { answerText: "Bill Gates", isCorrect: false },
-      { answerText: "Tony Stark", isCorrect: false },
-    ],
+    content: "Who is CEO of Tesla?",
+    answerA: { content: "New York", isCorrect: false },
+    answerB: { content: "London", isCorrect: false },
+    answerC: { content: "Paris", isCorrect: true },
+    answerD: { content: "Dublin", isCorrect: false },
   },
   {
     id: "3",
-    image:
+    urlImage:
       "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    questionText: "The iPhone was created by which company?",
-    answerOptions: [
-      { answerText: "Apple", isCorrect: true },
-      { answerText: "Intel", isCorrect: false },
-      { answerText: "Amazon", isCorrect: false },
-      { answerText: "Microsoft", isCorrect: false },
-    ],
+    content: "The iPhone was created by which company?",
+    answerA: { content: "New York", isCorrect: false },
+    answerB: { content: "London", isCorrect: false },
+    answerC: { content: "Paris", isCorrect: true },
+    answerD: { content: "Dublin", isCorrect: false },
   },
   {
     id: "4",
-    image:
+    urlImage:
       "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    questionText: "How many Harry Potter books are there?",
-    answerOptions: [
-      { answerText: "1", isCorrect: false },
-      { answerText: "4", isCorrect: false },
-      { answerText: "6", isCorrect: false },
-      { answerText: "7", isCorrect: true },
-    ],
+    content: "How many Harry Potter books are there?",
+    answerA: { content: "New York", isCorrect: false },
+    answerB: { content: "London", isCorrect: false },
+    answerC: { content: "Paris", isCorrect: true },
+    answerD: { content: "Dublin", isCorrect: false },
   },
 ];
+
+function Answer({ checked, content, value, name, onChange }) {
+  return (
+    <div className="container-test__answer">
+      <input
+        type="radio"
+        // className="container-test__answerA"
+        name={name}
+        data-value={value}
+        checked={checked}
+        onChange={onChange}
+      />
+      <label for="">{content}</label>
+    </div>
+  );
+}
 
 function Test() {
   // Timer
@@ -125,42 +134,54 @@ function Test() {
   }
 
   // Answer the Question
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answerKey, setAnswerKey] = useState();
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  // const [checked, setChecked] = useState(false);
 
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1);
     }
-
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-    } else {
-      setShowScore(true);
-    }
   };
 
-  function getBackQuestion() {
-    const prevQuestion = currentQuestion - 1;
-    return prevQuestion;
-  }
+  // Answer checked
+  const [checked, setChecked] = useState();
 
   // Count time
   const [countTime, setCountTime] = useState(0);
 
+  const countUpTime = () => {
+    if (pauseTime === false) {
+      setTimeout(() => {
+        setCountTime(countTime + 1);
+      }, 1000);
+    } else {
+      clearTimeout(countUpTime);
+    }
+  };
+
   useEffect(() => {
-    setTimeout(() => {
-      setCountTime(countTime + 1);
-    }, 1000);
+    countUpTime();
   }, [countTime]);
+
+  // Pause time
+  const [pauseTime, setPauseTime] = useState(false);
 
   // Format time
   function fmtMSS(s) {
     return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
   }
+
+  // Answer List
+  const [answerList, setAnswerList] = useState([]);
+  // console.log(answerList);
+
+  // Post the answers
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("answerList", JSON.stringify(items));
+  }, [items]);
 
   return (
     <div className="container-test">
@@ -183,7 +204,7 @@ function Test() {
               <div className="final-score">
                 <span>Điểm số</span>
                 <br></br>
-                {((score / questions.length) * 10).toFixed(2)}
+                {((score / questions.length) * 10).toFixed(1)}
               </div>
               <div className="finish-time">
                 <span>Thời gian làm bài</span>
@@ -194,31 +215,74 @@ function Test() {
           </div>
         ) : (
           <div className="doing-tests">
-            <div className="container-question">
-              <span>Câu {currentQuestion + 1}</span>
-              <div className="container-test__question">
-                {questions[currentQuestion].questionText}
-              </div>
-              <img
-                src={questions[currentQuestion].image}
-                alt={questions[currentQuestion].image}
-                className="container-test__image"
-              />
-              {questions[currentQuestion].answerOptions.map((answer) => (
-                <button
-                  className="container-test__answer"
-                  onClick={() => handleAnswer(answer.isCorrect)}
-                >
-                  {answer.answerText}
-                </button>
-              ))}
-              <button className="prev-question-btn" onClick={getBackQuestion}>
-                <FontAwesomeIcon
-                  icon={faArrowLeftLong}
-                  className="prev-question-icon"
+            {questions.map((question) => (
+              <div className="container-question">
+                <span>Câu {question.id}</span>
+                <div className="container-test__question">
+                  {question.content}
+                </div>
+                <img
+                  src={question.urlImage}
+                  alt={question.urlImage}
+                  className="container-test__image"
                 />
-              </button>
-            </div>
+                {/* Answers */}
+                <Answer
+                  name={question.content}
+                  value="1"
+                  // checked={checked === answerKey}
+                  onChange={(e) => {
+                    setAnswerList([
+                      ...answerList,
+                      parseInt(e.target.dataset.value),
+                    ]);
+                    setChecked(parseInt(e.target.dataset.value));
+                    setAnswerKey(parseInt(e.target.dataset.value));
+                    // console.log(e.target.dataset.value);
+                  }}
+                  content={question.answerA.content}
+                />
+                <Answer
+                  name={question.content}
+                  value="2"
+                  // checked={checked === answerKey + 1}
+                  onChange={(e) => {
+                    setAnswerList([
+                      ...answerList,
+                      parseInt(e.target.dataset.value),
+                    ]);
+                    setChecked(parseInt(e.target.dataset.value));
+                  }}
+                  content={question.answerB.content}
+                />
+                <Answer
+                  name={question.content}
+                  value="3"
+                  // checked={checked === answerKey + 2}
+                  onChange={(e) => {
+                    setAnswerList([
+                      ...answerList,
+                      parseInt(e.target.dataset.value),
+                    ]);
+                    setChecked(parseInt(e.target.dataset.value));
+                  }}
+                  content={question.answerC.content}
+                />
+                <Answer
+                  name={question.content}
+                  value="4"
+                  // checked={checked === answerKey + 3}
+                  onChange={(e) => {
+                    setAnswerList([
+                      ...answerList,
+                      parseInt(e.target.dataset.value),
+                    ]);
+                    setChecked(parseInt(e.target.dataset.value));
+                  }}
+                  content={question.answerD.content}
+                />
+              </div>
+            ))}
             <div className="testing-time-container">
               <div className="testing-time">
                 <FontAwesomeIcon icon={faClock} className="testing-time-icon" />
@@ -227,7 +291,9 @@ function Test() {
               <button
                 className="testing-time-btn"
                 onClick={() => {
+                  setPauseTime(true);
                   setShowScore(true);
+                  setItems(answerList);
                 }}
               >
                 Kết thúc bài thi
@@ -241,7 +307,16 @@ function Test() {
       <div className="modal-container">
         <div className="modal-times-up">
           <div className="modal-title">Thời gian làm bài đã hết!</div>
-          <button className="modal-btn" onClick={() => setShowScore(true)}>
+          <button
+            className="modal-btn"
+            onClick={() => {
+              if (modal) {
+                modal.classList.add("disable");
+              }
+              setPauseTime(true);
+              setShowScore(true);
+            }}
+          >
             Kết thúc bài thi
           </button>
         </div>

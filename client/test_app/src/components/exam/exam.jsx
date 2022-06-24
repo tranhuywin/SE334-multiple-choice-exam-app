@@ -88,10 +88,12 @@ const subjectsList = [
   },
 ];
 
-const subjects = ["posts", "comments", "albums", "photos", "todos", "users"];
+// const subjects = ["posts", "comments", "albums", "photos", "todos", "users"];
 
 function Exam() {
   const [type, setType] = useState("posts");
+
+  console.log(type);
 
   return (
     <React.Fragment>
@@ -112,18 +114,12 @@ function Exam() {
 
               <div className="container-footer">
                 <div className="num-exam">100 đề thi</div>
-                {subjects.map((subs) => {
-                  if (subs === subject.name) {
-                    return (
-                      <button
-                        className="btn-category"
-                        onClick={() => setType(subs)}
-                      >
-                        <a href={`/user/exam/${subs}`}>Xem chi tiết</a>
-                      </button>
-                    );
-                  }
-                })}
+                <button
+                  className="btn-category"
+                  onClick={() => setType(subject.name)}
+                >
+                  <a href={`/user/exam/${type}`}>Xem chi tiết</a>
+                </button>
               </div>
             </div>
           </div>
