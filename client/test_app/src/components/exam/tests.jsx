@@ -154,7 +154,7 @@ function Test() {
     if (pauseTime === false) {
       setTimeout(() => {
         setCountTime(countTime + 1);
-      }, 1000);
+      }, 900);
     } else {
       clearTimeout(countUpTime);
     }
@@ -238,7 +238,7 @@ function Test() {
                     ]);
                     setChecked(parseInt(e.target.dataset.value));
                     setAnswerKey(parseInt(e.target.dataset.value));
-                    // console.log(e.target.dataset.value);
+                    handleAnswer(question.answerA.isCorrect);
                   }}
                   content={question.answerA.content}
                 />
@@ -252,6 +252,8 @@ function Test() {
                       parseInt(e.target.dataset.value),
                     ]);
                     setChecked(parseInt(e.target.dataset.value));
+                    setAnswerKey(parseInt(e.target.dataset.value));
+                    handleAnswer(question.answerB.isCorrect);
                   }}
                   content={question.answerB.content}
                 />
@@ -265,6 +267,8 @@ function Test() {
                       parseInt(e.target.dataset.value),
                     ]);
                     setChecked(parseInt(e.target.dataset.value));
+                    setAnswerKey(parseInt(e.target.dataset.value));
+                    handleAnswer(question.answerC.isCorrect);
                   }}
                   content={question.answerC.content}
                 />
@@ -278,6 +282,8 @@ function Test() {
                       parseInt(e.target.dataset.value),
                     ]);
                     setChecked(parseInt(e.target.dataset.value));
+                    setAnswerKey(parseInt(e.target.dataset.value));
+                    handleAnswer(question.answerD.isCorrect);
                   }}
                   content={question.answerD.content}
                 />

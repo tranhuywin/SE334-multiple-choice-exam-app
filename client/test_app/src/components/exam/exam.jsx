@@ -17,7 +17,7 @@ import GDCD from "../../assets/images/gdcd.png";
 const subjectsList = [
   {
     id: 1,
-    name: "posts",
+    name: "toan-hoc",
     image: ToanHoc,
     title: "Đề thi THPT QG môn Toán",
     description:
@@ -26,7 +26,7 @@ const subjectsList = [
 
   {
     id: 2,
-    name: "comments",
+    name: "hoa-hoc",
     image: HoaHoc,
     title: "Đề thi THPT QG môn Hóa học",
     description:
@@ -35,7 +35,7 @@ const subjectsList = [
 
   {
     id: 3,
-    name: "albums",
+    name: "vat-ly",
     image: VatLy,
     title: "Đề thi THPT QG môn Vật lý",
     description:
@@ -44,7 +44,7 @@ const subjectsList = [
 
   {
     id: 4,
-    name: "photos",
+    name: "sinh-hoc",
     image: SinhHoc,
     title: "Đề thi THPT QG môn Sinh học",
     description:
@@ -53,7 +53,7 @@ const subjectsList = [
 
   {
     id: 5,
-    name: "todos",
+    name: "tieng-anh",
     image: TiengAnh,
     title: "Đề thi THPT QG môn Tiếng anh",
     description:
@@ -62,7 +62,7 @@ const subjectsList = [
 
   {
     id: 6,
-    name: "users",
+    name: "lich-su",
     image: LichSu,
     title: "Đề thi THPT QG môn Lịch sử",
     description:
@@ -80,7 +80,7 @@ const subjectsList = [
 
   {
     id: 8,
-    name: "GDCD",
+    name: "gdcd",
     image: GDCD,
     title: "Đề thi THPT QG môn GDCD",
     description:
@@ -91,9 +91,22 @@ const subjectsList = [
 // const subjects = ["posts", "comments", "albums", "photos", "todos", "users"];
 
 function Exam() {
-  const [type, setType] = useState("posts");
+  const [type, setType] = useState("toan-hoc");
 
-  console.log(type);
+  // console.log(type);
+
+  // const getData = () => {
+  //   fetch(`https://jsonplaceholder.typicode.com/${getPathName}`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setSubjects(res);
+  //       // console.log(res)
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <React.Fragment>
