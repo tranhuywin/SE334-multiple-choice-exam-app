@@ -9,6 +9,8 @@ const SignIn = React.lazy(() => import("./pages/header/sign/sign-in.jsx"));
 const SignUp = React.lazy(() => import("./pages/header/sign/sign-up.jsx"));
 const Home = React.lazy(() => import("./components/home.jsx"));
 const Exam = React.lazy(() => import("./components/exam/exam.jsx"));
+const SubjectsList = React.lazy(() => import("./components/exam/subjects-list.jsx"));
+const Test = React.lazy(() => import("./components/exam/tests.jsx"));
 const ManualDocument = React.lazy(() => import("./components/manual-document.jsx"));
 const Create = React.lazy(() => import("./components/create.jsx"));
 const Results = React.lazy(() => import("./components/results.jsx"));
@@ -27,6 +29,8 @@ class App extends Component {
                   <Route path = "/user/manual-document" element={<ManualDocument/>}/>
                   <Route path = "/user/create" element={<Create/>}/>
                   <Route path = "/user/results" element={<Results/>}/>
+                  <Route path = "/user/exam/:name" element={<SubjectsList/>}/>
+                  <Route path = "/user/exam/:name/test" element={<Test/>}/>
               </Route>
           </Routes>
         </Suspense>
