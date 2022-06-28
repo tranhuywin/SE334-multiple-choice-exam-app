@@ -12,7 +12,7 @@ import ExamApi from "./api/exam-api.jsx";
 function SubjectsList() {
   const [subjects, setSubjects] = useState([]);
   const [subjectsList, setSubjectsList] = useState([]);
-  const [subjectId, setSubjectId] = useState(9);
+  const [subjectId, setSubjectId] = useState(localStorage.getItem("subjectId"));
 
   const pathName = window.location.pathname.split("/");
   const getSubjectName = pathName[pathName.length - 1];
