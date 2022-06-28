@@ -21,6 +21,7 @@ function SignIn() {
         await SignApi.login(params)
             .then((res) => {
                 if(res !== null) {
+                    console.log("login successfully");
                     navigate("/user");
                 }
             })

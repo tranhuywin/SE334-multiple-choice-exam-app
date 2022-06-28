@@ -51,11 +51,11 @@ function Option({nextBtn}) {
 
     const handleBtnNext = () => {
         if(title !== "" && idSubject !== 0 && dateTime !== "" && timeText !== 0 && name !== "") {
-            localStorage.setItem('titleExam', JSON.stringify(title));
-            localStorage.setItem('idSubject', JSON.stringify(idSubject));
-            localStorage.setItem('dateTime', JSON.stringify(dateTime));
-            localStorage.setItem('timeText', JSON.stringify(timeText));
-            localStorage.setItem('name', JSON.stringify(name));
+            localStorage.setItem('titleExam', title);
+            localStorage.setItem('idSubject', idSubject);
+            localStorage.setItem('dateTime', dateTime);
+            localStorage.setItem('timeText', timeText);
+            localStorage.setItem('name', name);
             nextBtn(true);
         } else {
             alert("Vui lòng nhập thông tin bài thi trước khi tạo câu hỏi");
@@ -73,7 +73,7 @@ function Option({nextBtn}) {
                 <div className="options-content">
                     <div className="option-content">
                         <label>Môn học: </label>
-                        <Select options={subjects} className="option-select" value={idSubject} onChange={e => setIdSubjects(e.value)}/>
+                        <Select options={subjects} className="option-select" value={subjects.value} onChange={e => setIdSubjects(e.value)}/>
                     </div>
                     <div className="option-content">
                         <label>Ngày tạo đề: </label>
