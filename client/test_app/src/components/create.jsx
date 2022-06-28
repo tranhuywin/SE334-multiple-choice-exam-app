@@ -42,7 +42,7 @@ function Create() {
                     <h2>TẠO CÂU HỎI</h2>
                 </div>
             </div>
-            <CreateQuestion addQuestionToList={setListQuestion}/>
+            { openListQues && <CreateQuestion addQuestionToList={setListQuestion}/>}
             <div className="title-questions">
                 <div className="content-title">
                     <h2>DANH SÁCH CÂU HỎI</h2>

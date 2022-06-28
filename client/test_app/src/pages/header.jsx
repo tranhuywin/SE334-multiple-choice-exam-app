@@ -13,7 +13,7 @@ function Header() {
     const [user, setUser] = useState("")
 
     const HandleSignOut = () => {
-      localStorage.removeItem("email");
+      localStorage.clear();
       navigate('/');
     }
 
@@ -44,7 +44,7 @@ function Header() {
                 <ul className={openAction ? 'opened' : 'opened clicked'}>
                   <li><a href="!#">Thông tin cá nhân</a></li>
                   <li><a href="!#">Cài đặt</a></li>
-                  <li><a href="!#" onClick={HandleSignOut}>Đăng xuất</a></li>
+                  <li><a href="/" onClick={HandleSignOut}>Đăng xuất</a></li>
                 </ul>
               </div>
             </nav>
