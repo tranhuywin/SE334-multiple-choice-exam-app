@@ -9,7 +9,7 @@ const HeaderApiGet = (paraMethod) => {
   }
 
   const requestOptions = {
-    mode: "no-cors",
+    // mode: "no-cors",
     method: paraMethod,
     headers: {
       "Content-Type": "application/json",
@@ -20,14 +20,18 @@ const HeaderApiGet = (paraMethod) => {
   return requestOptions;
 };
 
-const ExamApi = {
-  getExam: async (subjectsId) => {
-    const url = `http://localhost:3001/subjects/${subjectsId}`;
-    const response = await fetch(url, HeaderApiGet("GET"));
-    console.log(response);
-    const data = await response.json();
-    return data;
+const ExamListApi = {
+  getExamList: async (subjectsId) => {
+    try {
+      const url = `http://localhost:3001/subjects/${subjectsId}`;
+      const response = await fetch(url, HeaderApiGet("GET"));
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
 
-export default ExamApi;
+export default ExamListApi;

@@ -1,23 +1,36 @@
 import React, { Component } from "react";
 
-const Header = (params, paraMethod) => {
+const HeaderApiGet = (paraMethod) => {
+  if (
+    localStorage.getItem("accessToken") !== null &&
+    localStorage.getItem("accessToken") !== undefined
+  ) {
+    var accessToken = localStorage.getItem("accessToken");
+  }
+
   const requestOptions = {
+    // mode: "no-cors",
     method: paraMethod,
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify(params),
   };
 
   return requestOptions;
 };
 
 const TestApi = {
-  sendAnswer: async (params) => {
-    const url = "http://localhost:3001/user-exam";
-    const response = await fetch(url, Header(params, "POST"));
-    const data = await response.json();
-    return data;
+  getTest: async (examId) => {
+    try {
+      const url = `http://localhost:3001/exams/${examId}`;
+      const response = await fetch(url, HeaderApiGet("GET"));
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
 

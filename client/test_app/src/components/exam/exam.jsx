@@ -13,6 +13,7 @@ import TiengAnh from "../../assets/images/tieng-anh.png";
 import LichSu from "../../assets/images/lich-su.png";
 import DiaLy from "../../assets/images/dia-ly.png";
 import GDCD from "../../assets/images/gdcd.png";
+import ExamListApi from "./api/subjects-list-api.jsx";
 
 const subjectsInfo = [
   {
@@ -100,8 +101,20 @@ const subjects = [
 ];
 function Exam() {
   const [type, setType] = useState("toan-hoc");
+  // const [subjects, setSubjects] = useState([]);
 
-  // console.log(type);
+  // const getData = async () => {
+  //   await ExamListApi.getExamList(subjectId)
+  //     .then((res) => {
+  //       if (res != null) {
+  //         setSubjects(res);
+  //         console.log(res);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <React.Fragment>
@@ -121,7 +134,7 @@ function Exam() {
               </div>
 
               <div className="container-footer">
-                <div className="num-exam">100 đề thi</div>
+                <div className="num-exam">10 đề thi</div>
                 <button
                   className="btn-category"
                   onClick={() => {
@@ -130,6 +143,7 @@ function Exam() {
                         setType(subjects[i]);
                       }
                     }
+                    localStorage.setItem("subjectId", subject.id);
                   }}
                 >
                   <a href={`/user/exam/${type}`}>Xem chi tiết</a>
