@@ -4,6 +4,7 @@ import "./create.css"
 import Option from "./create/option";
 import CreateQuestion from "./create/create-question";
 import Question from "./create/question";
+import CreateExamApi from "../api/createExamApi";
 
 function Create() {
     const [listQuestion, setListQuestion] = useState([]);
@@ -14,15 +15,34 @@ function Create() {
     const remove = (item) => {
         setListQuestion((listQuestion) => listQuestion.filter((i) => i === item))
     }
-    const handleAddExam = () => {
-        setListExam(prev => [...prev,{
-            idSubject: JSON.parse(localStorage.getItem('idSubject')),
-            name: JSON.parse(localStorage.getItem('name')),
-            listQues: listQuestion,
-            timeDoExam: JSON.parse(localStorage.getItem('timeText')),
-            titleExam: JSON.parse(localStorage.getItem('titleExam')),
-            dateCreate: JSON.parse(localStorage.getItem('dateTime')),
-        }])
+    const handleAddExam = async () => {
+        // setListExam(prev => [...prev,{
+        //     idSubject: localStorage.getItem('idSubject'),
+        //     name: localStorage.getItem('name'),
+        //     questions: listQuestion,
+        //     time: localStorage.getItem('timeText'),
+        //     titleExam: localStorage.getItem('titleExam'),
+        //     dateCreate: localStorage.getItem('dateTime'),
+        // }])
+        const examination = {
+            time: parseInt(localStorage.getItem('timeText')),
+            idSubject: parseInt(localStorage.getItem('idSubject')),
+            // name: localStorage.getItem('name'),
+            questions: listQuestion,
+            // titleExam: localStorage.getItem('titleExam'),
+            // dateCreate: localStorage.getItem('dateTime'),
+        }
+
+        console.log(examination);
+        await CreateExamApi.AddExam(examination)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        setOpenListQues(false);
     }
 
     useEffect(() => {
@@ -42,7 +62,7 @@ function Create() {
                     <h2>TẠO CÂU HỎI</h2>
                 </div>
             </div>
-            <CreateQuestion addQuestionToList={setListQuestion}/>
+            { openListQues && <CreateQuestion addQuestionToList={setListQuestion}/>}
             <div className="title-questions">
                 <div className="content-title">
                     <h2>DANH SÁCH CÂU HỎI</h2>

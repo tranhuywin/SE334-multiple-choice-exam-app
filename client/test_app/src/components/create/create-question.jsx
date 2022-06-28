@@ -27,23 +27,36 @@ function CreateQuestion({addQuestionToList}) {
         if(question !== "" && answera !== "" && answerb !== "" && answerc !== "" && answerd !== "") {
             addQuestionToList(prev => [...prev, 
                 {
-                    question: question, 
-                    answer_a: answera, 
-                    answer_b: answerb, 
-                    answer_c: answerc, 
-                    answer_d: answerd,
-                    img: imageUrl,
-                    correctAnswer: correctAnswer
+                    content: question,
+                    urlImage: imageUrl,
+                    answerA: {
+                        isCorrect: 0 === parseInt(correctAnswer) ? true : false,
+                        content: answera
+                    }, 
+                    answerB: {
+                        isCorrect: 1 === parseInt(correctAnswer) ? true : false,
+                        content: answerb
+                    },
+                    answerC: {
+                        isCorrect: 2 === parseInt(correctAnswer) ? true : false,
+                        content: answerc
+                    }, 
+                    answerD: {
+                        isCorrect: 3 === parseInt(correctAnswer) ? true : false,
+                        content: answerd
+                    },
                 }
             ]);
-            setQuestion("");
-            setAnswera("");
-            setAnswerb("");
-            setAnswerc("");
-            setAnswerd("");
         } else {
             alert("Chưa nhập đầy đủ câu hỏi & câu trả lời");
         }
+
+        setQuestion("");
+        setAnswera("");
+        setAnswerb("");
+        setAnswerc("");
+        setAnswerd("");
+        setCorrectAnswer("");
     }
 
     return(
@@ -58,22 +71,22 @@ function CreateQuestion({addQuestionToList}) {
                         <div className="create-answer-content">
                             <label>A.</label>
                             <input placeholder="Câu trả lời..." value={answera} onChange={e => setAnswera(e.target.value)}/>
-                            <input type="radio" name="correct-answer" value={answera} onChange={e => setCorrectAnswer(e.target.value)}/>
+                            <input type="radio" name="correct-answer" value={"0"} checked={correctAnswer === "0"} onChange={e => setCorrectAnswer(e.target.value)}/>
                         </div>
                         <div className="create-answer-content">
                             <label>B.</label>
                             <input placeholder="Câu trả lời..." value={answerb} onChange={e => setAnswerb(e.target.value)}/>
-                            <input type="radio" name="correct-answer" value={answerb} onChange={e => setCorrectAnswer(e.target.value)}/>
+                            <input type="radio" name="correct-answer" value={"1"} checked={correctAnswer === "1"} onChange={e => setCorrectAnswer(e.target.value)}/>
                         </div>
                         <div className="create-answer-content">
                             <label>C.</label>
                             <input placeholder="Câu trả lời..." value={answerc} onChange={e => setAnswerc(e.target.value)}/>
-                            <input type="radio" name="correct-answer" value={answerc} onChange={e => setCorrectAnswer(e.target.value)}/>
+                            <input type="radio" name="correct-answer" value={"2"} checked={correctAnswer === "2"} onChange={e => setCorrectAnswer(e.target.value)}/>
                         </div>
                         <div className="create-answer-content">
                             <label>D.</label>
                             <input placeholder="Câu trả lời..." value={answerd} onChange={e => setAnswerd(e.target.value)}/>
-                            <input type="radio" name="correct-answer" value={answerd} onChange={e => setCorrectAnswer(e.target.value)}/>
+                            <input type="radio" name="correct-answer" value={"3"} checked={correctAnswer === "3"} onChange={e => setCorrectAnswer(e.target.value)}/>
                         </div>
                     </div>
                     <div className="create-right-container">

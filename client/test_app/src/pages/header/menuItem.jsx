@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 
 function MenuItem({navitem}) {
 
@@ -26,20 +25,20 @@ function MenuItem({navitem}) {
             <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                 {navitem.submenu ? (
                     <>
-                        <Link className={navitem.cName} to={navitem.url}>{navitem.title}</Link>
+                        <a className={navitem.cName} href={navitem.url}>{navitem.title}</a>
                         
                         <ul className={ dropdown ? "dropdown" : "dropdown clicked"}>
                             {navitem.submenu.map((item, index1) => {
                               return(
                                 <li key={index1}>
-                                    <Link className={item.cName} to={item.url} onClick={() => setDropdown(true)}>{item.title}</Link>
+                                    <a className={item.cName} href={item.url} onClick={() => setDropdown(true)}>{item.title}</a>
                                 </li>
                               );
                             })}
                         </ul>
                     </>
                 ) : (
-                    <Link className={navitem.cName} to={navitem.url}>{navitem.title}</Link>
+                    <a className={navitem.cName} href={navitem.url}>{navitem.title}</a>
                 )}
             </li>
         </React.Fragment>

@@ -5,20 +5,34 @@ import "./header.css";
 import { navItems } from "./header/navbarItem";
 import MenuItem from "./header/menuItem";
 import { useNavigate } from 'react-router-dom';
+import HeaderApi from "../api/headerApi";
 
 function Header() {
     let navigate = useNavigate();
     const [click, setClick] = useState(false);
     const [openAction, setOpenAction] = useState(false);
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState("");
 
     const HandleSignOut = () => {
-      localStorage.removeItem("email");
+      localStorage.clear();
       navigate('/');
     }
 
+    const handleGetUser = async () => {
+        
+      await HeaderApi.getUser()
+          .then((res) => {
+              if(res !== null) {
+                  setUser(res.data.email);
+              }
+          })
+          .catch(error => {
+              console.log(error);
+          });
+  }
+
     useEffect(() => {
-        setUser(localStorage.getItem("email"));
+      handleGetUser();
     }, []);
 
     return(
@@ -44,7 +58,7 @@ function Header() {
                 <ul className={openAction ? 'opened' : 'opened clicked'}>
                   <li><a href="!#">Thông tin cá nhân</a></li>
                   <li><a href="!#">Cài đặt</a></li>
-                  <li><a href="!#" onClick={HandleSignOut}>Đăng xuất</a></li>
+                  <li><a href="/" onClick={HandleSignOut}>Đăng xuất</a></li>
                 </ul>
               </div>
             </nav>

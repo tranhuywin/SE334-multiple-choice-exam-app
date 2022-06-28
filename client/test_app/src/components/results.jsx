@@ -3,7 +3,7 @@ import RecResult from "./result/rec-result";
 import './results.css';
 
 function Results() {
-    const [data, setData] = useState(false);
+    const [data, setData] = useState(true);
     return(
         <div className="results-page">
             <div className="heading-content">

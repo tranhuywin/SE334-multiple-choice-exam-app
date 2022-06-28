@@ -5,8 +5,8 @@ import { Route, Routes} from 'react-router-dom';
 
 
 const User = React.lazy(() => import("./pages/user.jsx"));
-const SignIn = React.lazy(() => import("./pages/header/sign/sign-in.jsx"));
-const SignUp = React.lazy(() => import("./pages/header/sign/sign-up.jsx"));
+const SignIn = React.lazy(() => import("./pages/sign/sign-in.jsx"));
+const SignUp = React.lazy(() => import("./pages/sign/sign-up.jsx"));
 const Home = React.lazy(() => import("./components/home.jsx"));
 const Exam = React.lazy(() => import("./components/exam/exam.jsx"));
 const SubjectsList = React.lazy(() => import("./components/exam/subjects-list.jsx"));

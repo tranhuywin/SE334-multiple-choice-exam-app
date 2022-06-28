@@ -78,28 +78,28 @@ function Question({question, num, handleDelete}) {
                         <div className="left-container">
                             <div className="topic-content">
                                 <label>Câu {num + 1}:</label>
-                                <p>{question.question}</p>
+                                <p>{question.content}</p>
                             </div>
                             <div className="answer-content-view">
                                 <label>A.</label>
-                                <p>{question.answer_a}</p>
+                                <p>{question.answerA.content}</p>
                             </div>
                             <div className="answer-content-view">
                                 <label>B.</label>
-                                <p>{question.answer_b}</p>
+                                <p>{question.answerB.content}</p>
                             </div>
                             <div className="answer-content-view">
                                 <label>C.</label>
-                                <p>{question.answer_c}</p>
+                                <p>{question.answerC.content}</p>
                             </div>
                             <div className="answer-content-view">
                                 <label>D.</label>
-                                <p>{question.answer_d}</p>
+                                <p>{question.answerD.content}</p>
                             </div>
                         </div>
                         <div className="right-container">
                             <div className="image-content">
-                                <img src={question.img} alt="img"></img>
+                                <img src={question.urlImage} alt="img"></img>
                             </div>
                         </div>
                     </div>
