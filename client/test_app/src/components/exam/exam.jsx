@@ -13,104 +13,112 @@ import TiengAnh from "../../assets/images/tieng-anh.png";
 import LichSu from "../../assets/images/lich-su.png";
 import DiaLy from "../../assets/images/dia-ly.png";
 import GDCD from "../../assets/images/gdcd.png";
+import ExamListApi from "./api/subjects-list-api.jsx";
 
-const subjectsList = [
+const subjectsInfo = [
   {
     id: 1,
-    name: "toan-hoc",
+    name: "toán học",
     image: ToanHoc,
-    title: "Đề thi THPT QG môn Toán",
+    title: "Đề thi THPT Quốc Gia môn Toán",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Toán sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Toán được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn Toán sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Toán được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 
   {
     id: 2,
-    name: "hoa-hoc",
-    image: HoaHoc,
-    title: "Đề thi THPT QG môn Hóa học",
+    name: "vật lý",
+    image: VatLy,
+    title: "Đề thi THPT Quốc Gia môn Vật lý",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Hóa học sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Hóa học được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn Vật lý sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Vật lý được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 
   {
     id: 3,
-    name: "vat-ly",
-    image: VatLy,
-    title: "Đề thi THPT QG môn Vật lý",
+    name: "hóa học",
+    image: HoaHoc,
+    title: "Đề thi THPT Quốc Gia môn Hóa học",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Vật lý sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Vật lý được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn Hóa học sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Hóa học được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 
   {
     id: 4,
-    name: "sinh-hoc",
+    name: "sinh học",
     image: SinhHoc,
-    title: "Đề thi THPT QG môn Sinh học",
+    title: "Đề thi THPT Quốc Gia môn Sinh học",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Sinh học sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Sinh học được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn Sinh học sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Sinh học được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 
   {
     id: 5,
-    name: "tieng-anh",
-    image: TiengAnh,
-    title: "Đề thi THPT QG môn Tiếng anh",
+    name: "lịch sử",
+    image: LichSu,
+    title: "Đề thi THPT Quốc Gia môn Lịch sử",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Tiếng anh sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Tiếng anh được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn Lịch sử sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Lịch sử được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 
   {
     id: 6,
-    name: "lich-su",
-    image: LichSu,
-    title: "Đề thi THPT QG môn Lịch sử",
+    name: "địa lý",
+    image: DiaLy,
+    title: "Đề thi THPT Quốc Gia môn Địa lý",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Lịch sử sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Lịch sử được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn Địa lý sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Địa lý được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 
   {
     id: 7,
-    name: "dia-ly",
-    image: DiaLy,
-    title: "Đề thi THPT QG môn Địa lý",
+    name: "gdcd",
+    image: GDCD,
+    title: "Đề thi THPT Quốc Gia môn GDCD",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn Địa lý sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Địa lý được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn GDCD sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Địa lý được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 
   {
     id: 8,
-    name: "gdcd",
-    image: GDCD,
-    title: "Đề thi THPT QG môn GDCD",
+    name: "tiếng anh",
+    image: TiengAnh,
+    title: "Đề thi THPT Quốc Gia môn Tiếng anh",
     description:
-      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT QG môn GDCD sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT QG môn Địa lý được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
+      "Nhằm giúp các em chuẩn bị thật tốt cho kì thi THPT Quốc Gia môn Tiếng anh sắp đến. Xin gửi đến các em bộ đề thi trắc nghiệm THPT Quốc Gia môn Tiếng anh được sưu tập qua các năm với đầy đủ lời giải chi tiết.",
   },
 ];
 
-// const subjects = ["posts", "comments", "albums", "photos", "todos", "users"];
-
+const subjects = [
+  "toan-hoc",
+  "vat-ly",
+  "hoa-hoc",
+  "sinh-hoc",
+  "lich-su",
+  "dia-ly",
+  "gdcd",
+  "tieng-anh",
+];
 function Exam() {
   const [type, setType] = useState("toan-hoc");
+  // const [subjects, setSubjects] = useState([]);
 
-  // console.log(type);
-
-  // const getData = () => {
-  //   fetch(`https://jsonplaceholder.typicode.com/${getPathName}`)
-  //     .then((res) => res.json())
+  // const getData = async () => {
+  //   await ExamListApi.getExamList(subjectId)
   //     .then((res) => {
-  //       setSubjects(res);
-  //       // console.log(res)
+  //       if (res != null) {
+  //         setSubjects(res);
+  //         console.log(res);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
   //     });
   // };
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
   return (
     <React.Fragment>
-      {subjectsList.map((subject) => {
+      {subjectsInfo.map((subject) => {
         return (
           <div className="container">
             <div className="image">
@@ -126,10 +134,17 @@ function Exam() {
               </div>
 
               <div className="container-footer">
-                <div className="num-exam">100 đề thi</div>
+                <div className="num-exam">10 đề thi</div>
                 <button
                   className="btn-category"
-                  onClick={() => setType(subject.name)}
+                  onClick={() => {
+                    for (let i = 0; i < subjectsInfo.length; i++) {
+                      if (subject.id === i + 1) {
+                        setType(subjects[i]);
+                      }
+                    }
+                    localStorage.setItem("subjectId", subject.id);
+                  }}
                 >
                   <a href={`/user/exam/${type}`}>Xem chi tiết</a>
                 </button>
