@@ -76,7 +76,7 @@ function SubjectsList() {
 
                 <div className="progress-box">
                   <div className="progress-box__item">
-                    <span>0/{subjects.exam.length}</span>
+                    {/* <span>0/{subjects.exam.length}</span> */}
                     <div className="progress">
                       <div className="progress-bar"></div>
                     </div>

@@ -231,10 +231,7 @@ function Test() {
                     value="1"
                     // checked={checked === answerKey}
                     onChange={(e) => {
-                      setAnswerList([
-                        ...answerList,
-                        parseInt(e.target.dataset.value),
-                      ]);
+                      setAnswerList([...answerList, e.target.dataset.value]);
                       setChecked(parseInt(e.target.value));
                       setAnswerKey(parseInt(e.target.value));
                       handleAnswer(question.answerA.isCorrect);
@@ -246,7 +243,7 @@ function Test() {
                     value="2"
                     // checked={checked === answerKey + 1}
                     onChange={(e) => {
-                      setAnswerList([...answerList, parseInt(e.target.value)]);
+                      setAnswerList([...answerList, e.target.value]);
                       setChecked(parseInt(e.target.value));
                       setAnswerKey(parseInt(e.target.value));
                       handleAnswer(question.answerB.isCorrect);
@@ -258,7 +255,7 @@ function Test() {
                     value="3"
                     // checked={checked === answerKey + 2}
                     onChange={(e) => {
-                      setAnswerList([...answerList, parseInt(e.target.value)]);
+                      setAnswerList([...answerList, e.target.value]);
                       setChecked(parseInt(e.target.value));
                       setAnswerKey(parseInt(e.target.value));
                       handleAnswer(question.answerC.isCorrect);
@@ -270,7 +267,7 @@ function Test() {
                     value="4"
                     // checked={checked === answerKey + 3}
                     onChange={(e) => {
-                      setAnswerList([...answerList, parseInt(e.target.value)]);
+                      setAnswerList([...answerList, e.target.value]);
                       setChecked(parseInt(e.target.value));
                       setAnswerKey(parseInt(e.target.value));
                       handleAnswer(question.answerD.isCorrect);
@@ -289,7 +286,7 @@ function Test() {
                 onClick={() => {
                   setPauseTime(true);
                   setShowScore(true);
-                  setItems(answerList);
+                  setItems(answerList.toString());
                   handleSendAnswers();
                 }}
               >
@@ -312,7 +309,7 @@ function Test() {
               }
               setPauseTime(true);
               setShowScore(true);
-              setItems(answerList);
+              setItems(answerList.toString());
               handleSendAnswers();
             }}
           >
