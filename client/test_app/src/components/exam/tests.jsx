@@ -9,57 +9,14 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import "./tests.css";
-// import Question from "./question.jsx";
-
-const questions = [
-  {
-    id: "1",
-    urlImage:
-      "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    content: "What is the capital of France?",
-    answerA: { content: "New York", isCorrect: false },
-    answerB: { content: "London", isCorrect: false },
-    answerC: { content: "Paris", isCorrect: true },
-    answerD: { content: "Dublin", isCorrect: false },
-  },
-  {
-    id: "2",
-    urlImage:
-      "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    content: "Who is CEO of Tesla?",
-    answerA: { content: "New York", isCorrect: false },
-    answerB: { content: "London", isCorrect: false },
-    answerC: { content: "Paris", isCorrect: true },
-    answerD: { content: "Dublin", isCorrect: false },
-  },
-  {
-    id: "3",
-    urlImage:
-      "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    content: "The iPhone was created by which company?",
-    answerA: { content: "New York", isCorrect: false },
-    answerB: { content: "London", isCorrect: false },
-    answerC: { content: "Paris", isCorrect: true },
-    answerD: { content: "Dublin", isCorrect: false },
-  },
-  {
-    id: "4",
-    urlImage:
-      "https://lessonopoly.org/wp-content/uploads/2021/02/do-thi-ham-so-01.jpg",
-    content: "How many Harry Potter books are there?",
-    answerA: { content: "New York", isCorrect: false },
-    answerB: { content: "London", isCorrect: false },
-    answerC: { content: "Paris", isCorrect: true },
-    answerD: { content: "Dublin", isCorrect: false },
-  },
-];
+import TestApi from "./api/tests-api.jsx";
+import SendAnswerApi from "./api/send-answer-api.jsx";
 
 function Answer({ checked, content, value, name, onChange }) {
   return (
     <div className="container-test__answer">
       <input
         type="radio"
-        // className="container-test__answerA"
         name={name}
         data-value={value}
         checked={checked}
@@ -71,6 +28,30 @@ function Answer({ checked, content, value, name, onChange }) {
 }
 
 function Test() {
+  // Gets test to do
+  const [exam, setExam] = useState([]);
+  const [examTime, setExamTime] = useState();
+  const pathName = window.location.pathname.split("/");
+  const getExamId = pathName[pathName.length - 1];
+
+  const getData = async () => {
+    await TestApi.getTest(getExamId)
+      .then((res) => {
+        if (res != null) {
+          setExam(res);
+          setExamTime(res.time);
+          console.log(res.time);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   // Timer
   const Ref = useRef(null);
   const [timer, setTimer] = useState("00:00:00");
@@ -154,7 +135,7 @@ function Test() {
     if (pauseTime === false) {
       setTimeout(() => {
         setCountTime(countTime + 1);
-      }, 900);
+      }, 1000);
     } else {
       clearTimeout(countUpTime);
     }
@@ -174,14 +155,27 @@ function Test() {
 
   // Answer List
   const [answerList, setAnswerList] = useState([]);
-  // console.log(answerList);
+  //   console.log(typeof answerList);
 
-  // Post the answers
+  // Post the answers to localStorage
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("answerList", JSON.stringify(items));
   }, [items]);
+
+  //   Send the Answers
+  const handleSendAnswers = async () => {
+    await SendAnswerApi.sendAnswer(answerList)
+      .then((res) => {
+        if (res !== null) {
+          console.log("Send the answers list successfully");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="container-test">
@@ -197,14 +191,14 @@ function Test() {
                 <br></br>
                 {(score > 9 ? score : "0" + score) +
                   "/" +
-                  (questions.length > 9
-                    ? questions.length
-                    : "0" + questions.length)}
+                  (exam.questions.length > 9
+                    ? exam.questions.length
+                    : "0" + exam.questions.length)}
               </div>
               <div className="final-score">
                 <span>Điểm số</span>
                 <br></br>
-                {((score / questions.length) * 10).toFixed(1)}
+                {((score / exam.questions.length) * 10).toFixed(1)}
               </div>
               <div className="finish-time">
                 <span>Thời gian làm bài</span>
@@ -215,80 +209,73 @@ function Test() {
           </div>
         ) : (
           <div className="doing-tests">
-            {questions.map((question) => (
-              <div className="container-question">
-                <span>Câu {question.id}</span>
-                <div className="container-test__question">
-                  {question.content}
+            {Array.isArray(exam.questions) &&
+              exam.questions.map((question) => (
+                <div className="container-question">
+                  <span>Câu {question.id}</span>
+                  <div className="container-test__question">
+                    {question.content}
+                  </div>
+                  {question.urlImage === "" ? (
+                    ""
+                  ) : (
+                    <img
+                      src={question.urlImage}
+                      alt={question.urlImage}
+                      className="container-test__image"
+                    />
+                  )}
+                  {/* Answers */}
+                  <Answer
+                    name={question.id}
+                    value="1"
+                    // checked={checked === answerKey}
+                    onChange={(e) => {
+                      setAnswerList([...answerList, e.target.dataset.value]);
+                      setChecked(parseInt(e.target.value));
+                      setAnswerKey(parseInt(e.target.value));
+                      handleAnswer(question.answerA.isCorrect);
+                    }}
+                    content={question.answerA.content}
+                  />
+                  <Answer
+                    name={question.content}
+                    value="2"
+                    // checked={checked === answerKey + 1}
+                    onChange={(e) => {
+                      setAnswerList([...answerList, e.target.value]);
+                      setChecked(parseInt(e.target.value));
+                      setAnswerKey(parseInt(e.target.value));
+                      handleAnswer(question.answerB.isCorrect);
+                    }}
+                    content={question.answerB.content}
+                  />
+                  <Answer
+                    name={question.content}
+                    value="3"
+                    // checked={checked === answerKey + 2}
+                    onChange={(e) => {
+                      setAnswerList([...answerList, e.target.value]);
+                      setChecked(parseInt(e.target.value));
+                      setAnswerKey(parseInt(e.target.value));
+                      handleAnswer(question.answerC.isCorrect);
+                    }}
+                    content={question.answerC.content}
+                  />
+                  <Answer
+                    name={question.content}
+                    value="4"
+                    // checked={checked === answerKey + 3}
+                    onChange={(e) => {
+                      setAnswerList([...answerList, e.target.value]);
+                      setChecked(parseInt(e.target.value));
+                      setAnswerKey(parseInt(e.target.value));
+                      handleAnswer(question.answerD.isCorrect);
+                    }}
+                    content={question.answerD.content}
+                  />
                 </div>
-                <img
-                  src={question.urlImage}
-                  alt={question.urlImage}
-                  className="container-test__image"
-                />
-                {/* Answers */}
-                <Answer
-                  name={question.content}
-                  value="1"
-                  // checked={checked === answerKey}
-                  onChange={(e) => {
-                    setAnswerList([
-                      ...answerList,
-                      parseInt(e.target.dataset.value),
-                    ]);
-                    setChecked(parseInt(e.target.dataset.value));
-                    setAnswerKey(parseInt(e.target.dataset.value));
-                    handleAnswer(question.answerA.isCorrect);
-                  }}
-                  content={question.answerA.content}
-                />
-                <Answer
-                  name={question.content}
-                  value="2"
-                  // checked={checked === answerKey + 1}
-                  onChange={(e) => {
-                    setAnswerList([
-                      ...answerList,
-                      parseInt(e.target.dataset.value),
-                    ]);
-                    setChecked(parseInt(e.target.dataset.value));
-                    setAnswerKey(parseInt(e.target.dataset.value));
-                    handleAnswer(question.answerB.isCorrect);
-                  }}
-                  content={question.answerB.content}
-                />
-                <Answer
-                  name={question.content}
-                  value="3"
-                  // checked={checked === answerKey + 2}
-                  onChange={(e) => {
-                    setAnswerList([
-                      ...answerList,
-                      parseInt(e.target.dataset.value),
-                    ]);
-                    setChecked(parseInt(e.target.dataset.value));
-                    setAnswerKey(parseInt(e.target.dataset.value));
-                    handleAnswer(question.answerC.isCorrect);
-                  }}
-                  content={question.answerC.content}
-                />
-                <Answer
-                  name={question.content}
-                  value="4"
-                  // checked={checked === answerKey + 3}
-                  onChange={(e) => {
-                    setAnswerList([
-                      ...answerList,
-                      parseInt(e.target.dataset.value),
-                    ]);
-                    setChecked(parseInt(e.target.dataset.value));
-                    setAnswerKey(parseInt(e.target.dataset.value));
-                    handleAnswer(question.answerD.isCorrect);
-                  }}
-                  content={question.answerD.content}
-                />
-              </div>
-            ))}
+              ))}
             <div className="testing-time-container">
               <div className="testing-time">
                 <FontAwesomeIcon icon={faClock} className="testing-time-icon" />
@@ -299,7 +286,8 @@ function Test() {
                 onClick={() => {
                   setPauseTime(true);
                   setShowScore(true);
-                  setItems(answerList);
+                  setItems(answerList.toString());
+                  handleSendAnswers();
                 }}
               >
                 Kết thúc bài thi
@@ -321,6 +309,8 @@ function Test() {
               }
               setPauseTime(true);
               setShowScore(true);
+              setItems(answerList.toString());
+              handleSendAnswers();
             }}
           >
             Kết thúc bài thi
