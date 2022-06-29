@@ -16,6 +16,7 @@ const SignApi = {
         const response = await fetch(url, Header(params, 'POST'));
         const data = await response.json();
         localStorage.setItem("accessToken", data.data.user.accessToken);
+        localStorage.setItem("role", data.data.user.role);
         return data.data.user;
     },
 

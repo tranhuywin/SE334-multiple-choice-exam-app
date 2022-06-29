@@ -32,6 +32,24 @@ function SignUp() {
                 console.log(error);
             });
     }
+
+    const HandleUserName = () => {
+        if(emailAcc.includes("@")) {
+            var arr = emailAcc.split("@");
+            var username = arr[0];
+            setUserName(username);
+        } else if(!emailAcc.includes("@") && emailAcc.includes(".")) {
+            var arr1 = emailAcc.split(".");
+            var username1 = arr1[0];
+            setUserName(username1);
+        } else if(!emailAcc.includes("@") && !emailAcc.includes(".")) {
+            setUserName(emailAcc);
+        } else if(emailAcc === "") {
+            setUserName("");
+        }
+    }
+
+
     return(
         <div className="signup-background">
             <div className="signup-container">
@@ -40,10 +58,10 @@ function SignUp() {
                 </div>
                 <div className="signup-body">
                     <div className="signup-accounts-container">
-                        <span className="span-id">*</span><input placeholder="Email" onChange={e => setEmailAcc(e.target.value)}/>
+                        <span className="span-id">*</span><input placeholder="Email" onChange={e => {setEmailAcc(e.target.value); HandleUserName()}}/>
                     </div>
                     <div className="signup-accounts-container">
-                        <span className="span-id">*</span><input placeholder="Tên đăng nhập" onChange={e => setUserName(e.target.value)}/>
+                        <span className="span-id">*</span><input placeholder="Tên đăng nhập" value={userName}/>
                     </div>
                     <div className="signup-accounts-container">
                         <span className="span-id">*</span>
