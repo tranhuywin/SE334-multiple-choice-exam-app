@@ -1,43 +1,39 @@
 import React, {useState} from "react";
-import "./sign-up.css";
+import SignApi from "../../api/signApi";
+import { useNavigate } from 'react-router-dom';
+import "./forgot.css";
 
 function Forgot() {
-    const [showPass, setShowPass] = useState(false);
+    let navigate = useNavigate();
+    const [email, setEmail] = useState("");
+
+    const HandleRequest = async () => {
+        await SignApi.forgot(email)
+            .then((res) => {
+                if(res !== null) {
+                    console.log(res);
+                    navigate("/");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
     return(
-        <div className="signup-background">
-            <div className="signup-container">
-                <div className="signup-header">
-                    <h1>Đăng ký</h1>
+        <div className="forgot-background">
+            <div className="forgot-container">
+                <div className="forgot-header">
+                    <h1>Quên mật khẩu</h1>
                 </div>
-                <div className="signup-body">
-                    <div className="signup-accounts-container">
-                        <span className="span-id">*</span><input placeholder="Email"/>
-                    </div>
-                    <div className="signup-accounts-container">
-                        <span className="span-id">*</span><input placeholder="Tên đăng nhập"/>
-                    </div>
-                    <div className="signup-accounts-container">
-                        <span className="span-id">*</span><input placeholder="Mật khẩu" type={showPass ? "text" : "password"}/>
-                        {showPass ? 
-                            <i className="fas fa-eye signup-i-account-container" onClick={() => setShowPass(!showPass)}></i> 
-                            : 
-                            <i className="fas fa-eye-slash signup-i-account-container" onClick={() => setShowPass(!showPass)}></i>
-                        }
-                    </div>
-                    <div className="label-accounts-container">
-                        <label><span className="span-id">*</span>Bạn là: </label>
-                    </div>
-                    <div className="account-type">
-                        <div className="type">
-                            <input type="radio" name="account-type"/>Học sinh
-                            <input type="radio" name="account-type"/>Giáo viên
-                        </div>
+                <div className="forgot-body">
+                    <div className="forgot-accounts-container">
+                        <span className="span-id">*</span><input placeholder="Email" onChange={e => setEmail(e.target.value)}/>
                     </div>
                 </div>
-                <div className="signup-footer">
-                    <button>Đăng ký</button>
-                    <div className="signup-account">
-                        <p>Đã có tài khoản? <a href="/">Đăng nhập</a></p>
+                <div className="forgot-footer">
+                    <button onClick={HandleRequest}>Lấy lại mật khẩu</button>
+                    <div className="forgot-account">
+                        <p>Nhấn vào đây để <a href="/">Đăng nhập</a></p>
                     </div>
                 </div>
             </div>

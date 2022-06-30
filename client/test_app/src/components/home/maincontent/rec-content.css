@@ -51,6 +51,11 @@
     /* transition: all 0.5s ease-in-out; */
 }
 
+.btn-content a{
+    text-decoration: none;
+    color: #fff;
+}
+
 .btn-content:hover {
     color: #0018f1;
 }
