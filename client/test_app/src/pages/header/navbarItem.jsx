@@ -33,42 +33,42 @@ export const navItems = [
     submenu: [
       {
         title: "Toán học",
-        url: "#",
+        url: "/user/exam/toan-hoc",
         cName: "subitem-link",
       },
       {
         title: "Vật lý",
-        url: "#",
+        url: "/user/exam/vat-ly",
         cName: "subitem-link",
       },
       {
         title: "Hóa học",
-        url: "#",
+        url: "/user/exam/hoa-hoc",
         cName: "subitem-link",
       },
       {
         title: "Sinh học",
-        url: "#",
-        cName: "subitem-link",
-      },
-      {
-        title: "Địa lý",
-        url: "#",
+        url: "/user/exam/sinh-hoc",
         cName: "subitem-link",
       },
       {
         title: "Lịch sử",
-        url: "#",
+        url: "/user/exam/lich-su",
+        cName: "subitem-link",
+      },
+      {
+        title: "Địa lý",
+        url: "/user/exam/dia-ly",
         cName: "subitem-link",
       },
       {
         title: "GDCD",
-        url: "#",
+        url: "/user/exam/gdcd",
         cName: "subitem-link",
       },
       {
         title: "Tiếng Anh",
-        url: "#",
+        url: "/user/exam/tieng-anh",
         cName: "subitem-link",
       },
     ],
@@ -149,42 +149,42 @@ export const studentItems = [
     submenu: [
       {
         title: "Toán học",
-        url: "http://localhost:3000/user/exam/toan-hoc",
+        url: "/user/exam/toan-hoc",
         cName: "subitem-link",
       },
       {
         title: "Vật lý",
-        url: "http://localhost:3000/user/exam/vat-ly",
+        url: "/user/exam/vat-ly",
         cName: "subitem-link",
       },
       {
         title: "Hóa học",
-        url: "http://localhost:3000/user/exam/hoa-hoc",
+        url: "/user/exam/hoa-hoc",
         cName: "subitem-link",
       },
       {
         title: "Sinh học",
-        url: "#",
+        url: "/user/exam/sinh-hoc",
         cName: "subitem-link",
       },
       {
         title: "Lịch sử",
-        url: "http://localhost:3000/user/exam/lich-su",
+        url: "/user/exam/lich-su",
         cName: "subitem-link",
       },
       {
         title: "Địa lý",
-        url: "http://localhost:3000/user/exam/dia-ly",
+        url: "/user/exam/dia-ly",
         cName: "subitem-link",
       },
       {
         title: "GDCD",
-        url: "http://localhost:3000/user/exam/gdcd",
+        url: "/user/exam/gdcd",
         cName: "subitem-link",
       },
       {
         title: "Tiếng Anh",
-        url: "http://localhost:3000/user/exam/tieng-anh",
+        url: "/user/exam/tieng-anh",
         cName: "subitem-link",
       },
     ],

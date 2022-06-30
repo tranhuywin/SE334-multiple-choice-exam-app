@@ -83,7 +83,13 @@ function SubjectsList() {
                   </div>
                 </div>
 
-                <button className="btn-starting-test" onClick={() => {}}>
+                <button
+                  className="btn-starting-test"
+                  onClick={() => {
+                    localStorage.setItem("examId", sub.id);
+                    console.log(subjects.exam.id);
+                  }}
+                >
                   <a href={`/user/exam/${getSubjectName}/${sub.id}`}>
                     Bắt đầu thi
                   </a>

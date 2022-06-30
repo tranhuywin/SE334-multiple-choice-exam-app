@@ -166,7 +166,11 @@ function Test() {
 
   //   Send the Answers
   const handleSendAnswers = async () => {
-    await SendAnswerApi.sendAnswer(answerList)
+    await SendAnswerApi.sendAnswer({
+      examId: localStorage.getItem("examId"),
+      answers: answerList,
+      time: examTime,
+    })
       .then((res) => {
         if (res !== null) {
           console.log("Send the answers list successfully");
