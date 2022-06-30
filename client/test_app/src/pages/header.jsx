@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./header.css";
 
 import { navItems } from "./header/navbarItem";
+import { studentItems } from "./header/navbarItem";
 import MenuItem from "./header/menuItem";
 import { useNavigate } from 'react-router-dom';
 import HeaderApi from "../api/headerApi";
@@ -12,6 +13,7 @@ function Header() {
     const [click, setClick] = useState(false);
     const [openAction, setOpenAction] = useState(false);
     const [user, setUser] = useState("");
+    const [role, setRole] = useState(0);
 
     const HandleSignOut = () => {
       localStorage.clear();
@@ -24,6 +26,7 @@ function Header() {
           .then((res) => {
               if(res !== null) {
                   setUser(res.data.email);
+                  setRole(res.data.role);
               }
           })
           .catch(error => {
@@ -44,11 +47,19 @@ function Header() {
                 <i className={click ? 'fas fa-times' : 'fas fa-bars'}></i>
               </div>
               <ul className={ click ? 'nav-menu active' : 'nav-menu'}>
-                {navItems.map((item, index) => {
+                {role === 1 ? 
+                navItems.map((item, index) => {
                   return(
                     <MenuItem navitem={item} key={index}/>
                   );
-                })}
+                })
+                :
+                studentItems.map((item, index) => {
+                  return(
+                    <MenuItem navitem={item} key={index}/>
+                  );
+                })
+                }
               </ul>
               <div className="welcome-user">
                 <p>Xin chào, {user}</p>

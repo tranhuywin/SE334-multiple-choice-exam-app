@@ -5,7 +5,7 @@ function RecContent({img, title, description, link}) {
     const [btn, setBtn] = useState(false);
 
     const HandleBtnEnter = () => {
-        setTimeout(() => setBtn(true), 200);
+        setTimeout(() => setBtn(true));
         // setBtn(true);
     }
 
@@ -19,7 +19,7 @@ function RecContent({img, title, description, link}) {
                 <img className="image-content" src={img} alt="img"></img>
                 <h3 className="title-content">{title}</h3>
                 <p className="desc-content">{description}</p>
-                {btn && <button className="btn-content">Xem chi tiết</button>}
+                {btn && <button className="btn-content"><a href={link}>Xem chi tiết</a></button>}
             </div>
         </div>
     );
