@@ -210,72 +210,75 @@ function Test() {
         ) : (
           <div className="doing-tests">
             {Array.isArray(exam.questions) &&
-              exam.questions.map((question) => (
-                <div className="container-question">
-                  <span>Câu {question.id}</span>
-                  <div className="container-test__question">
-                    {question.content}
-                  </div>
-                  {question.urlImage === "" ? (
-                    ""
-                  ) : (
-                    <img
-                      src={question.urlImage}
-                      alt={question.urlImage}
-                      className="container-test__image"
+              exam.questions.map((question) => {
+                return (
+                  <div className="container-question">
+                    <span>Câu 1</span>
+                    <div className="container-test__question">
+                      {question.content}
+                    </div>
+                    {question.urlImage === "" ? (
+                      ""
+                    ) : (
+                      <img
+                        src={question.urlImage}
+                        alt={question.urlImage}
+                        className="container-test__image"
+                      />
+                    )}
+                    {/* Answers */}
+                    <Answer
+                      name={question.id}
+                      value="1"
+                      // checked={checked === answerKey}
+                      onChange={(e) => {
+                        setAnswerList([...answerList, e.target.dataset.value]);
+                        // setChecked(parseInt(e.target.value));
+                        setAnswerKey(parseInt(e.target.value));
+                        handleAnswer(question.answerA.isCorrect);
+                        console.log(e.target.dataset.value);
+                      }}
+                      content={question.answerA.content}
                     />
-                  )}
-                  {/* Answers */}
-                  <Answer
-                    name={question.id}
-                    value="1"
-                    // checked={checked === answerKey}
-                    onChange={(e) => {
-                      setAnswerList([...answerList, e.target.dataset.value]);
-                      setChecked(parseInt(e.target.value));
-                      setAnswerKey(parseInt(e.target.value));
-                      handleAnswer(question.answerA.isCorrect);
-                    }}
-                    content={question.answerA.content}
-                  />
-                  <Answer
-                    name={question.content}
-                    value="2"
-                    // checked={checked === answerKey + 1}
-                    onChange={(e) => {
-                      setAnswerList([...answerList, e.target.value]);
-                      setChecked(parseInt(e.target.value));
-                      setAnswerKey(parseInt(e.target.value));
-                      handleAnswer(question.answerB.isCorrect);
-                    }}
-                    content={question.answerB.content}
-                  />
-                  <Answer
-                    name={question.content}
-                    value="3"
-                    // checked={checked === answerKey + 2}
-                    onChange={(e) => {
-                      setAnswerList([...answerList, e.target.value]);
-                      setChecked(parseInt(e.target.value));
-                      setAnswerKey(parseInt(e.target.value));
-                      handleAnswer(question.answerC.isCorrect);
-                    }}
-                    content={question.answerC.content}
-                  />
-                  <Answer
-                    name={question.content}
-                    value="4"
-                    // checked={checked === answerKey + 3}
-                    onChange={(e) => {
-                      setAnswerList([...answerList, e.target.value]);
-                      setChecked(parseInt(e.target.value));
-                      setAnswerKey(parseInt(e.target.value));
-                      handleAnswer(question.answerD.isCorrect);
-                    }}
-                    content={question.answerD.content}
-                  />
-                </div>
-              ))}
+                    <Answer
+                      name={question.id}
+                      value="2"
+                      // checked={checked === answerKey + 1}
+                      onChange={(e) => {
+                        setAnswerList([...answerList, e.target.dataset.value]);
+                        // setChecked(parseInt(e.target.value));
+                        setAnswerKey(parseInt(e.target.value));
+                        handleAnswer(question.answerB.isCorrect);
+                      }}
+                      content={question.answerB.content}
+                    />
+                    <Answer
+                      name={question.id}
+                      value="3"
+                      // checked={checked === answerKey + 2}
+                      onChange={(e) => {
+                        setAnswerList([...answerList, e.target.dataset.value]);
+                        // setChecked(parseInt(e.target.value));
+                        setAnswerKey(parseInt(e.target.value));
+                        handleAnswer(question.answerC.isCorrect);
+                      }}
+                      content={question.answerC.content}
+                    />
+                    <Answer
+                      name={question.id}
+                      value="4"
+                      // checked={checked === answerKey + 3}
+                      onChange={(e) => {
+                        setAnswerList([...answerList, e.target.dataset.value]);
+                        // setChecked(parseInt(e.target.value));
+                        setAnswerKey(parseInt(e.target.value));
+                        handleAnswer(question.answerD.isCorrect);
+                      }}
+                      content={question.answerD.content}
+                    />
+                  </div>
+                );
+              })}
             <div className="testing-time-container">
               <div className="testing-time">
                 <FontAwesomeIcon icon={faClock} className="testing-time-icon" />
