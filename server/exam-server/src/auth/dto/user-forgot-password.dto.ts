@@ -10,8 +10,4 @@ export class ForgotPasswordDTO {
   @IsNotEmpty()
   @MinLength(6)
   password: string;
-
-  @ApiProperty()
-  @IsDateString()
-  date: string;
 }

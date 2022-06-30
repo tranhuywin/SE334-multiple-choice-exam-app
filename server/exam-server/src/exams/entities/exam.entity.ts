@@ -12,6 +12,9 @@ export class Exam {
     @Column()
     time: number;
 
+    @Column()
+    title: string;
+
     @ManyToOne(() => Subject, subject => subject.exam)
     subject: Subject;
 

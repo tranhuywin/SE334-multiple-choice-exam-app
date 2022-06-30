@@ -44,6 +44,9 @@ export class CreateExamDto {
     @IsNumber()
     readonly idSubject: number;
 
+    @ApiProperty()
+    readonly title: string;
+
     @ApiProperty({ type: [QuestionDto] })
     readonly questions: QuestionDto[];
 }

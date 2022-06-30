@@ -55,6 +55,7 @@ export class UserExamService {
     });
     //create userExam
     userExam.score = score;
+    userExam.time = createUserExamDto.time;
     userExam.exam = exam;
     userExam.user = await this.usersService.findOne(userId);
     const data = await this.userExamRepo.save(userExam);
@@ -67,6 +68,7 @@ export class UserExamService {
     return this.userExamRepo.createQueryBuilder('userExam')
       .leftJoinAndSelect('userExam.exam', 'exam')
       .leftJoinAndSelect('userExam.correctAnswers', 'correctAnswers')
+      .where('userExam.userId = :userId', { userId })
       .getMany();
   }
 }

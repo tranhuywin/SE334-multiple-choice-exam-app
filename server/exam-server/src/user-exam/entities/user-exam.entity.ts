@@ -20,6 +20,9 @@ export class UserExam {
     @Column()
     score: number;
 
+    @Column()
+    time: number;
+
     @CreateDateColumn({ name: "created_at" })
     createdAt: Date;
 

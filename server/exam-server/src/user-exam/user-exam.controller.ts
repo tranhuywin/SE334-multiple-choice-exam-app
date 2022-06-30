@@ -22,6 +22,6 @@ export class UserExamController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
   findAll(  @Request() req: Request & { user: User }) {
-    return this.userExamService.findAll(req?.user?.id || 1);
+    return this.userExamService.findAll(req?.user?.id);
   }
 }

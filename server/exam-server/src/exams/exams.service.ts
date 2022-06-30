@@ -34,6 +34,7 @@ export class ExamsService {
     exam.questions = questions;
     exam.subject = subject;
     exam.user = user;
+    exam.title = createExamDto.title;
     return await this.examRepo.save(exam);
 
   }
