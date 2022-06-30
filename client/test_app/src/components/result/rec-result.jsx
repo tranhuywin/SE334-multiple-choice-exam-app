@@ -6,15 +6,15 @@ function RecResult(props) {
         <div className="rec-container">
             <div className="rec-content">
                 <div className="rec-title">
-                    <h4>Title</h4>
+                    <h4>{props.title}</h4>
                 </div>
                 <div className="rec-properties">
                     <ul>
-                        <li><i class="fas fa-calendar-alt"></i> Ngày tạo đề: </li>
-                        <li><i class="fas fa-stopwatch"></i> Thời gian làm bài: </li>
-                        <li><i class="fas fa-list-ol"></i> Số câu hỏi: </li>
-                        <li><i class="fas fa-check-circle"></i> Trả lời đúng: </li>
-                        <li><i class="fas fa-star"></i> Điểm: </li>
+                        <li><i class="fas fa-calendar-alt"></i> Ngày tạo đề: {props.date}</li>
+                        <li><i class="fas fa-stopwatch"></i> Thời gian làm bài: {props.time}</li>
+                        <li><i class="fas fa-list-ol"></i> Số câu hỏi: {props.numOfQues}</li>
+                        <li><i class="fas fa-check-circle"></i> Trả lời đúng: {props.correctAnswer}</li>
+                        <li><i class="fas fa-star"></i> Điểm: {props.score}</li>
                     </ul>
                 </div>
                 <div className="rec-footer">
