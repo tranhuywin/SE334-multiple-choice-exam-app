@@ -210,10 +210,10 @@ function Test() {
         ) : (
           <div className="doing-tests">
             {Array.isArray(exam.questions) &&
-              exam.questions.map((question) => {
+              exam.questions.map((question, index) => {
                 return (
                   <div className="container-question">
-                    <span>Câu 1</span>
+                    <span>Câu {index + 1}</span>
                     <div className="container-test__question">
                       {question.content}
                     </div>
