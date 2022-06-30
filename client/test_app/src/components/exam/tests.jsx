@@ -232,9 +232,12 @@ function Test() {
                       value="1"
                       // checked={checked === answerKey}
                       onChange={(e) => {
-                        setAnswerList([...answerList, e.target.dataset.value]);
+                        setAnswerList([
+                          ...answerList,
+                          parseInt(e.target.dataset.value),
+                        ]);
                         // setChecked(parseInt(e.target.value));
-                        setAnswerKey(parseInt(e.target.value));
+                        // setAnswerKey(parseInt(e.target.value));
                         handleAnswer(question.answerA.isCorrect);
                         console.log(e.target.dataset.value);
                       }}
@@ -245,9 +248,12 @@ function Test() {
                       value="2"
                       // checked={checked === answerKey + 1}
                       onChange={(e) => {
-                        setAnswerList([...answerList, e.target.dataset.value]);
+                        setAnswerList([
+                          ...answerList,
+                          parseInt(e.target.dataset.value),
+                        ]);
                         // setChecked(parseInt(e.target.value));
-                        setAnswerKey(parseInt(e.target.value));
+                        // setAnswerKey(parseInt(e.target.value));
                         handleAnswer(question.answerB.isCorrect);
                       }}
                       content={question.answerB.content}
@@ -257,9 +263,12 @@ function Test() {
                       value="3"
                       // checked={checked === answerKey + 2}
                       onChange={(e) => {
-                        setAnswerList([...answerList, e.target.dataset.value]);
+                        setAnswerList([
+                          ...answerList,
+                          parseInt(e.target.dataset.value),
+                        ]);
                         // setChecked(parseInt(e.target.value));
-                        setAnswerKey(parseInt(e.target.value));
+                        // setAnswerKey(parseInt(e.target.value));
                         handleAnswer(question.answerC.isCorrect);
                       }}
                       content={question.answerC.content}
@@ -269,9 +278,12 @@ function Test() {
                       value="4"
                       // checked={checked === answerKey + 3}
                       onChange={(e) => {
-                        setAnswerList([...answerList, e.target.dataset.value]);
+                        setAnswerList([
+                          ...answerList,
+                          parseInt(e.target.dataset.value),
+                        ]);
                         // setChecked(parseInt(e.target.value));
-                        setAnswerKey(parseInt(e.target.value));
+                        // setAnswerKey(parseInt(e.target.value));
                         handleAnswer(question.answerD.isCorrect);
                       }}
                       content={question.answerD.content}
@@ -289,7 +301,7 @@ function Test() {
                 onClick={() => {
                   setPauseTime(true);
                   setShowScore(true);
-                  setItems(answerList.toString());
+                  setItems(answerList);
                   handleSendAnswers();
                 }}
               >
@@ -312,7 +324,7 @@ function Test() {
               }
               setPauseTime(true);
               setShowScore(true);
-              setItems(answerList.toString());
+              setItems(answerList);
               handleSendAnswers();
             }}
           >
