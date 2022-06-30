@@ -79,7 +79,7 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    const currentDate = new Date(forgot.date);
+    const currentDate = new Date();
     const lastUpdate = new Date(user.updatedAt);
 
     if ((currentDate.getTime() + 86400000) < lastUpdate.getTime()) {

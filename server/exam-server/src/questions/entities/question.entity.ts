@@ -1,6 +1,7 @@
 import { Answer } from 'src/answers/entities/answer.entity';
 import { Exam } from 'src/exams/entities/exam.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { CorrectAnswer } from 'src/user-exam/entities/correct-answer.entity';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class Question {
@@ -35,6 +36,9 @@ export class Question {
 
     @ManyToOne(() => Exam, exam => exam.questions)
     exam: Exam;
+
+    @OneToMany( () => CorrectAnswer, correctAnswer => correctAnswer.question)
+    correctAnswers: CorrectAnswer[];
 
     @CreateDateColumn({ name: "created_at" })
     createdAt: Date;

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExamsService } from 'src/exams/exams.service';
+import { Question } from 'src/questions/entities/question.entity';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { CreateUserExamDto } from './dto/create-user-exam.dto';
@@ -15,6 +16,8 @@ export class UserExamService {
     private readonly userExamRepo: Repository<UserExam>,
     @InjectRepository(CorrectAnswer)
     private readonly correctAnswerRepo: Repository<CorrectAnswer>,
+    @InjectRepository(Question)
+    private readonly questionRepo: Repository<Question>,
     private readonly examsService: ExamsService,
     private readonly usersService: UsersService,
   ) { }
@@ -27,7 +30,7 @@ export class UserExamService {
     const totalQuestion = exam.questions.length;
     const scorceAQuestion = 10 / totalQuestion;
     let score = 0;
-    const correctAnswers = exam.questions.map((question, index) => {
+    const correctAnswers = await Promise.all(exam.questions.map(async (question, index) => {
       let isCorrect = false;
 
       if (createUserExamDto.answers[index] === 1 && question.answerA.isCorrect) {
@@ -48,11 +51,11 @@ export class UserExamService {
       }
       // create correctAnswer
       const correctAnswer = new CorrectAnswer();
-      correctAnswer.questionId = exam.questions[index].id;
+      correctAnswer.question= await this.questionRepo.findOne(exam.questions[index].id);
       correctAnswer.isCorrect = isCorrect;
       correctAnswer.userExam = userExam;
       return correctAnswer;
-    });
+    }));
     //create userExam
     userExam.score = score;
     userExam.time = createUserExamDto.time;
@@ -68,6 +71,7 @@ export class UserExamService {
     return this.userExamRepo.createQueryBuilder('userExam')
       .leftJoinAndSelect('userExam.exam', 'exam')
       .leftJoinAndSelect('userExam.correctAnswers', 'correctAnswers')
+      .leftJoinAndSelect('correctAnswers.question', 'question')
       .where('userExam.userId = :userId', { userId })
       .getMany();
   }

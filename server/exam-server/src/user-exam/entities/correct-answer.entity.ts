@@ -1,3 +1,4 @@
+import { Question } from "src/questions/entities/question.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { UserExam } from "./user-exam.entity";
 
@@ -6,8 +7,8 @@ export class CorrectAnswer {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    questionId: number;
+    @ManyToOne(()=> Question, question => question.correctAnswers)
+    question: Question;
 
     @Column()
     isCorrect: boolean;
