@@ -21,6 +21,7 @@ const ResultApi = {
         const url = 'http://localhost:3001/user-exam';
         const response = await fetch(url, HeaderApiGet('GET'));
         const data = await response.json();
+        console.log(data);
         return data;
     },
 }

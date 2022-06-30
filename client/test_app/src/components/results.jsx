@@ -1,9 +1,28 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import ResultApi from "../api/getResultApi";
 import RecResult from "./result/rec-result";
 import './results.css';
 
 function Results() {
     const [data, setData] = useState(true);
+
+    const HandleResult = async () => {
+
+        await ResultApi.getResult()
+            .then((res) => {
+                if(res !== null) {
+                    console.log(res);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    useEffect(() => {
+        HandleResult();
+      }, []);
+
     return(
         <div className="results-page">
             <div className="heading-content">
