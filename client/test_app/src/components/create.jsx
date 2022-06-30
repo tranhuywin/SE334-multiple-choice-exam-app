@@ -32,8 +32,6 @@ function Create() {
             // titleExam: localStorage.getItem('titleExam'),
             // dateCreate: localStorage.getItem('dateTime'),
         }
-
-        console.log(examination);
         await CreateExamApi.AddExam(examination)
             .then(res => {
                 console.log(res);

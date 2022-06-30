@@ -4,19 +4,26 @@ import RecResult from "./result/rec-result";
 import './results.css';
 
 function Results() {
-    const [data, setData] = useState(true);
+    const [data, setData] = useState(false);
+    const [listResult, setListResult] = useState([]);
 
     const HandleResult = async () => {
 
         await ResultApi.getResult()
             .then((res) => {
                 if(res !== null) {
-                    console.log(res);
+                    setData(true);
+                    setListResult(res);
                 }
             })
             .catch((err) => {
                 console.log(err);
             })
+    }
+
+    const SplitDate = (data) => {
+        var strArr = data.split("T");
+        data = strArr[0];
     }
 
     useEffect(() => {
@@ -34,8 +41,8 @@ function Results() {
             </div>
             <div className="body-container">
                 <div className="search-content">
-                    <input placeholder="Nhập từ khóa tìm kiếm"/><i class="fas fa-search search-icon"></i>
-                    <button>Lọc <i class="fas fa-filter"></i></button>
+                    <input placeholder="Nhập từ khóa tìm kiếm"/><i className="fas fa-search search-icon"></i>
+                    <button>Lọc <i className="fas fa-filter"></i></button>
                 </div>
                 {!data ? 
                 <div className="no-data">
@@ -46,7 +53,17 @@ function Results() {
                 </div> 
                 :
                 <div className="got-data">
-                    <RecResult></RecResult>
+                    {listResult.map((item, index) => {
+                        return(
+                            <RecResult key={index} 
+                                        date={SplitDate(item.createdAt)} 
+                                        time={item.time} 
+                                        numOfQues={item.correctAnswers.length} 
+                                        correctAnswer={item.correctAnswers.length - 2}
+                                        score={item.score}
+                                        title={item.title}></RecResult>
+                        )
+                    })}
                 </div>
                 }
             </div>
