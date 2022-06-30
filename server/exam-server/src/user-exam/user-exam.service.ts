@@ -64,9 +64,9 @@ export class UserExamService {
   }
 
   public async findAll(userId: number) {
-    return this.userExamRepo.find({
-      where: { user: { id: userId } },
-      relations: ['correctAnswer', 'user'],
-    });
+    return this.userExamRepo.createQueryBuilder('userExam')
+      .leftJoinAndSelect('userExam.exam', 'exam')
+      .leftJoinAndSelect('userExam.correctAnswers', 'correctAnswers')
+      .getMany();
   }
 }
