@@ -5,7 +5,7 @@ function RecContent({img, title, description, link}) {
     const [btn, setBtn] = useState(false);
 
     const HandleBtnEnter = () => {
-        setTimeout(() => setBtn(true), 200);
+        setTimeout(() => setBtn(true));
         // setBtn(true);
     }
 

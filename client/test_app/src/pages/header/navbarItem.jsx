@@ -34,7 +34,7 @@ export const navItems = [
             cName: 'subitem-link'
         },
         {
-            title: 'Ngữ văn',
+            title: 'Sinh học',
             url: "#",
             cName: 'subitem-link'
         },

@@ -1,0 +1,159 @@
+.forgot-background {
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(200, 200, 200, 0.5); */
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    background-image: url('https://tracnghiemhay.com/images/banner/banner-1.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.forgot-container {
+    width: 500px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.forgot-close-button {
+    display: flex;
+    justify-content: flex-end;
+}
+.forgot-close-button button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.forgot-header {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.forgot-body {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.forgot-footer {
+    /* flex: 20%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forgot-footer button {
+    width: 350px;
+    height: 45px;
+    margin: 10px;
+    border: none;
+    /* background-color: rgb(58, 75, 205); */
+    background-color: #3a4bcd;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.forgot-footer button:hover {
+    border: 3px solid;
+}
+
+#forgot-cancelButton {
+    background-color: rgb(248, 96, 96);
+}
+
+.forgot-accounts-container {
+    width: 90%;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.label-accounts-container {
+    width: 80%;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.label-accounts-container label {
+    padding-left: 15px;
+}
+
+.type-select {
+    width: 90%;
+    border: none !important;
+    text-indent: 10px;
+}
+.forgot-account {
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.forgot-accounts-container input {
+    border: none;
+    border-bottom: 1px solid;
+    outline: none;
+    display: flex;
+    align-items: flex-end;
+}
+.forgot-i-account-container {
+    position: absolute;
+    right: 40px;
+}
+
+.forgot-forgot-account {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.account-type {
+    width: 90%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.type input {
+    margin-right: 10px;
+    margin-left: 60px;
+}
+
+.type-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
