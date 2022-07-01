@@ -61,7 +61,7 @@ function Results() {
                                         numOfQues={item.correctAnswers.length} 
                                         correctAnswer={item.correctAnswers.length}
                                         score={item.score}
-                                        title={item.title}></RecResult>
+                                        title={item.exam.title}></RecResult>
                         )
                     })}
                 </div>
