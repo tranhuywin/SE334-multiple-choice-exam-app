@@ -25,7 +25,7 @@ function Exam() {
     <React.Fragment>
       {subjectsInfo.map((subject) => {
         return (
-          <div className="container">
+          <div key={subject.id} className="container">
             <div className="image">
               <img src={subject.image} alt={subject.image} />
             </div>
