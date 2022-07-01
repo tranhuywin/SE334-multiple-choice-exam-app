@@ -19,8 +19,8 @@ function Create() {
         const examination = {
             time: parseInt(localStorage.getItem('timeText')),
             idSubject: parseInt(localStorage.getItem('idSubject')),
-            questions: listQuestion,
             titleExam: localStorage.getItem('titleExam'),
+            questions: listQuestion,
         }
         await CreateExamApi.AddExam(examination)
             .then(res => {
