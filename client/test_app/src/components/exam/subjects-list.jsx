@@ -13,6 +13,7 @@ function SubjectsList() {
   const [subjects, setSubjects] = useState([]);
   const [subjectsList, setSubjectsList] = useState([]);
   const [subjectId, setSubjectId] = useState(localStorage.getItem("subjectId"));
+  const [createdDate, setCreateDate] = useState("");
 
   const pathName = window.location.pathname.split("/");
   const getSubjectName = pathName[pathName.length - 1];
@@ -71,7 +72,7 @@ function SubjectsList() {
                     icon={faCalendarDays}
                     className="subject-item__calendar-icon"
                   />
-                  <span>20/20/2022</span>
+                  <span>{sub.createdAt.split("T")[0]}</span>
                 </div>
 
                 <div className="progress-box">
