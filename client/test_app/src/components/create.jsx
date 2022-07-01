@@ -21,13 +21,14 @@ function Create() {
         const examination = {
             time: parseInt(localStorage.getItem('timeText')),
             idSubject: parseInt(localStorage.getItem('idSubject')),
-            titleExam: localStorage.getItem('titleExam'),
+            title: localStorage.getItem('titleExam'),
             questions: listQuestion,
         }
+        console.log(examination);
         await CreateExamApi.AddExam(examination)
             .then(res => {
-                console.log(res);
                 alert("Tạo đề thi thành công");
+                console.log(res);
                 // navigate("/user");
             })
             .catch(err => {

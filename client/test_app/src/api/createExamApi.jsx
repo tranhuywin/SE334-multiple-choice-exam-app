@@ -18,7 +18,6 @@ const CreateExamApiPost = (params, paraMethod) => {
 const CreateExamApi = {
 
     AddExam: async (params) => {
-        console.log(params.json());
         const url = 'http://localhost:3001/exams';
         const response = await fetch(url, CreateExamApiPost(params, 'POST'));
         const data = await response.json();
