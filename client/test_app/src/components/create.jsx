@@ -5,8 +5,10 @@ import Option from "./create/option";
 import CreateQuestion from "./create/create-question";
 import Question from "./create/question";
 import CreateExamApi from "../api/createExamApi";
+import { useNavigate } from 'react-router-dom';
 
 function Create() {
+    let navigate = useNavigate();
     const [listQuestion, setListQuestion] = useState([]);
     const [listExam, setListExam] = useState([]);
     const [openListQues, setOpenListQues] = useState(false);
@@ -26,6 +28,7 @@ function Create() {
             .then(res => {
                 console.log(res);
                 alert("Tạo đề thi thành công");
+                // navigate("/user");
             })
             .catch(err => {
                 console.log(err);

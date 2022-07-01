@@ -59,7 +59,7 @@ function Results() {
                                         date={SplitDate(item.createdAt)} 
                                         time={item.time} 
                                         numOfQues={item.correctAnswers.length} 
-                                        correctAnswer={item.correctAnswers.length - 2}
+                                        correctAnswer={item.correctAnswers.length}
                                         score={item.score}
                                         title={item.title}></RecResult>
                         )

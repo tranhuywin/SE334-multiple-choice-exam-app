@@ -6,9 +6,15 @@ import "./forgot.css";
 function Forgot() {
     let navigate = useNavigate();
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const data = {
+        email: email,
+        password: password
+    }
 
     const HandleRequest = async () => {
-        await SignApi.forgot(email)
+        await SignApi.forgot(data)
             .then((res) => {
                 if(res !== null) {
                     console.log(res);
@@ -28,6 +34,9 @@ function Forgot() {
                 <div className="forgot-body">
                     <div className="forgot-accounts-container">
                         <span className="span-id">*</span><input placeholder="Email" onChange={e => setEmail(e.target.value)}/>
+                    </div>
+                    <div className="forgot-accounts-container">
+                        <span className="span-id">*</span><input placeholder="Mật khẩu mới" onChange={e => setPassword(e.target.value)}/>
                     </div>
                 </div>
                 <div className="forgot-footer">
