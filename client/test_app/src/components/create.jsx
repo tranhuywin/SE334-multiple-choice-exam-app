@@ -16,25 +16,16 @@ function Create() {
         setListQuestion((listQuestion) => listQuestion.filter((i) => i === item))
     }
     const handleAddExam = async () => {
-        // setListExam(prev => [...prev,{
-        //     idSubject: localStorage.getItem('idSubject'),
-        //     name: localStorage.getItem('name'),
-        //     questions: listQuestion,
-        //     time: localStorage.getItem('timeText'),
-        //     titleExam: localStorage.getItem('titleExam'),
-        //     dateCreate: localStorage.getItem('dateTime'),
-        // }])
         const examination = {
             time: parseInt(localStorage.getItem('timeText')),
             idSubject: parseInt(localStorage.getItem('idSubject')),
-            // name: localStorage.getItem('name'),
             questions: listQuestion,
-            // titleExam: localStorage.getItem('titleExam'),
-            // dateCreate: localStorage.getItem('dateTime'),
+            titleExam: localStorage.getItem('titleExam'),
         }
         await CreateExamApi.AddExam(examination)
             .then(res => {
                 console.log(res);
+                alert("Tạo đề thi thành công");
             })
             .catch(err => {
                 console.log(err);
