@@ -13,7 +13,6 @@ function SubjectsList() {
   const [subjects, setSubjects] = useState([]);
   const [subjectsList, setSubjectsList] = useState([]);
   const [subjectId, setSubjectId] = useState(localStorage.getItem("subjectId"));
-  const [createdDate, setCreateDate] = useState("");
 
   const pathName = window.location.pathname.split("/");
   const getSubjectName = pathName[pathName.length - 1];
